@@ -6,4 +6,4 @@ If you ever wondered what a bunch of exercises from [SICP](https://mitpress.mit.
 
 # Travis? Really?
 
-Since all exercises are verified with unit tests, I set up a Travis CI project. Because I can.
+Since most exercises are verified with unit tests, I set up a Travis CI project. Because I can.

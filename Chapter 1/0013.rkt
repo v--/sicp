@@ -6,21 +6,24 @@
 
 ; Solution
 ;
-; First, will prove that Fib(n) = (phi^n - psi^n) / sqrt(5), where psi = (1 - sqrt(5)) / 2.
+; We will first prove that Fib(n) = (phi^n - psi^n) / sqrt(5), where psi = (1 - sqrt(5)) / 2.
+; We begin by rewriting the Fibonacci function definition for n + 1:
 ;
-; This will be proven using two additional lemmas:
+;   Fib(n + 1) = Fib(n) + Fib(n - 1),
+;   Fib(n) = Fib(n + 1) - Fib(n - 1).
+;
+; Now, we substitute Fib(n) with (phi^n - psi^n) in the above identity to obtain
+;
+;   phi^(n + 1) - psi^(n + 1) = (phi^n - psi^n) - (phi^(n - 1) - psi^(n - 1)).                   (1)
+;
+; We will use this identity later to rebuild the recursive definition for Fib(n).
+; In order to be able to do this, we must first prove that (1) holds for all positive integers.
 ;
 ; Lemma 1:
-;   phi^(n + 1) - psi^(n + 1) = (phi^n - psi^n) - (phi^(n - 1) - psi^(n - 1)).
+;   (1) holds for all n >= 1.
 ;
 ; Proof:
-;   We first rewrite the Fibonacci function definition
-;
-;     Fib(n + 1) = Fib(n) + Fib(n - 1)
-;     Fib(n) = Fib(n + 1) - Fib(n - 1)
-;
-;   Now we substitute Fib(n) with (phi^n - psi^n) / sqrt(5) in the right-hand side of the above identity.
-;   (the denominator - sqrt(5) - is omitted for brevity)
+;   We manipulate the right-hand side to obtain the left-hand side.
 ;
 ;     phi^(n + 1) - psi^(n + 1) - (phi^(n - 1) - psi^(n - 1)) =
 ;     = phi^(n - 1) * (phi^2 - 1) - psi^(n - 1) * (psi^2 - 1) =
@@ -28,13 +31,13 @@
 ;     = phi^(n - 1) * (1 + sqrt(5)) / 2 - psi^(n - 1) * (1 - sqrt(5)) / 2 =
 ;     = phi^n - psi^n,
 ;
-;   thus, we proved that
-;
-;     phi^(n + 1) - psi^(n + 1) = (phi^n - psi^n) - (phi^(n - 1) - psi^(n - 1)).
+;   thus we have proved that (1) holds for all integers n >= 1.
 ; QED
 ;
+; Next, we prove the identity itself.
+;
 ; Lemma 2:
-;   Fib(n) = (phi^n - psi^n) / sqrt(5)
+;   Fib(n) = (phi^n - psi^n) / sqrt(5), n >= 0
 ;
 ; Proof:
 ;   We will use mathematical induction with two base cases
@@ -47,40 +50,40 @@
 ;     Fib(1) = 1 and
 ;     (phi - psi) / sqrt(5) = ((1 + sqrt(5) / 2) - (1 - sqrt(5) / 2)) / sqrt(5) = 1
 ;
-;   We assume that the lemma statement holds for n and n - 1 and prove it for n + 1.
-;   We use the results from lemma 1:
+;   We assume that the lemma statement holds for n - 1 and n - 2 and prove it for n.
+;   We add appropriate denominators to (1):
 ;
-;     phi^(n + 1) - psi^(n + 1) = (phi^n - psi^n) - (phi^(n - 1) - psi^(n - 1))
+;     (phi^n - psi^n) / sqrt(5) = (phi^(n - 1) - psi^(n - 1)) / sqrt(5) - (phi^(n - 2) - psi^(n - 2)) / sqrt(5)
 ;
-;   and substitute Fib(n) and Fib(n - 1), since we assume that this lemma holds for them:
+;   and substitute Fib(n - 1) and Fib(n - 2), since we have already assumed that this lemma holds for them:
 ;
-;     phi^(n + 1) - psi^(n + 1) = sqrt(5) * (Fib(n) - Fib(n - 1)).
+;     (phi^n - psi^n) / sqrt(5) = Fib(n - 1) - Fib(n - 2).
 ;
-;   Since Fib(n + 1) also equates Fib(n) - Fib(n - 1), by transitivity,
-;     Fib(n + 1) = (phi^(n + 1) - psi^(n + 1)) / sqrt(5).
+;   Since Fib(n) also equals Fib(n - 1) - Fib(n - 2), by transitivity,
+;     Fib(n) = (phi^n - psi^n) / sqrt(5).
+;
+;   This concludes the proof.
 ; QED
 ;
-; Now, we prove the main result.
+; In the following theorem, we will prove the main result - Fib(n) is the closest integer to phi^n / sqrt(5).
 ;
 ; Theorem:
-;   Fib(n) is the closest integer to phi^n / sqrt(5)
+;   | phi^n / sqrt(5) - Fib(n) | < 1 / 2.                                                        (2)
 ;
 ; Proof:
-;   The theorem statement can be formulated more precisely with the inequality
-;
-;     | phi^n / sqrt(5) - Fib(n) | < 1 / 2.
-;
-;   If we substitute the result from lemma 2, we obtain a the simpler expression,
+;   If we substitute the result from lemma 2, we obtain a simpler expression,
 ;
 ;     | psi^n / sqrt(5) | < 1 / 2,
 ;
 ;   or even
 ;
-;     | psi^n | < sqrt(5) / 2,
+;     | psi^n | < sqrt(5) / 2.                                                                   (3)
 ;
-;   Since psi ~= -0.62 < 1, we can conclude that | psi^n | <= | psi | for any n >= 1.
-;   Since psi^0 = 1 and psi < 1, we can also conclude that | psi^n | <= 1 for any n >= 0.
-;   Since sqrt(5) / 2 ~= 1.12, we can finally conclude that | psi^n | < sqrt(5) / 2.
+;   We will now prove that (3) holds for n >= 0.
+;   psi ~ -0.62 is less than 1, thus | psi^n | <= | psi | for any n >= 1.
+;   psi^0 = 1 is larger than psi, thus | psi^n | <= 1 for any n >= 0.
+;   Since sqrt(5) / 2 ~ 1.12, we can finally conclude that | psi^n | < sqrt(5) / 2 for any n > 0.
+;   We have proved (3) and, consequently, (2).
 ; QED
 
 ; Here are are few tests to verify that Fib(n) = (phi^n - psi^n) / sqrt(5)

@@ -38,13 +38,17 @@
 (check-equal? (f 3) 6)
 
 ; g(n) = 2^n, because:
-; For n > 1, g(n) = A(1, n) = A(0, A(1, n - 1)) = f(g(n - 1)) = 2 * g(n - 1)
-; For n = 1, g(1) = 2
+; g(n) = {
+;   A(1, n) = A(0, A(1, n - 1)) = f(g(n - 1)) = 2 * g(n - 1), if n > 1
+;   2                                                       , if n = 1
+; }
 (check-equal? (g 3) 8)
 
 ; h(n) = 2^...(2^(2^2)) - n twos and n - 1 exponentiations
-; For n > 1, h(n) = A(2, n) = A(1, A(2, n - 1)) = g(h(n - 1)) = 2^(h(n - 1))
-; For n = 1, h(1) = 2
+; h(n) = {
+;   n > 1, h(n) = A(2, n) = A(1, A(2, n - 1)) = g(h(n - 1)) = 2^(h(n - 1)), if n > 1
+;   2                                                                     , if n = 1
+; }
 (check-equal? (h 3) 16)
 
 ; Then, we formulate the expressions from the first part of the exercise using the above functions

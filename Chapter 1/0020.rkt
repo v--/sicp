@@ -63,7 +63,7 @@
 ;   r3 - 4 calls = 1 direct call, 1 evaluation of r1 and 1 evaluation of r2
 ;   r4 - 7 calls = 1 direct call, 1 evaluation of r2 and 1 evaluation of r3
 ;
-; Thus, remainder is evaluated a total of 4 + 7 = 11 times.
+; Thus remainder is evaluated a total of 4 + 7 = 11 times.
 
 ; The applicative-order substitution, on the other hand, applies remainder only 4 times:
 (check-two? (gcd 206 40))

@@ -122,7 +122,7 @@
 ;     n * T(n, k - 1),   if k > 1
 ;   },
 ;
-; which shows that T(n, k) belongs to Omega(n^k).
+; which shows that T(n, k) belongs to Theta(n^k).
 ;
 ; An empirical proof that T(n, k) is indeed the time complexity function for the count-change procedure
 ; is given below (with unit tests).
@@ -178,4 +178,4 @@
 (check-equal? (count-change-calls 15 5) (calculate-call-count 15 5))
 
 ; The space complexity is linear (again, inferred from the call tree):
-;   S(n, k) = 2 * n + k ~ Omega(n + k).
+;   S(n, k) = 2 * n + k ~ Theta(n + k).

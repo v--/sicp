@@ -44,7 +44,7 @@
 ;   T(a) = ceiling(log_3(a / t)),
 ;
 ; where t = 0.1 is the tolerance.
-; This means that the sine procedure has logarithmic time complexity (T(a) ~ Omega(log(a))).
+; This means that the sine procedure has logarithmic time complexity (T(a) ~ log(a)).
 
 (define (t a)
   (inexact->exact (ceiling (/ (log (/ 12.15 0.1)) (log 3)))))

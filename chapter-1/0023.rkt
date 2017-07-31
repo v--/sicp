@@ -53,9 +53,9 @@
 (#%require "../support/fuzzy-ratio-check.rkt")
 
 (define-simple-check (check-twice-faster? n)
-                     (fuzzy-ratio-equals? (* (measure-procedure fast-smallest-divisor n) 2)
-                                          (measure-procedure smallest-divisor n)
-                                          0.5))
+  (fuzzy-ratio-equals? (* (measure-procedure fast-smallest-divisor n) 2)
+                       (measure-procedure smallest-divisor n)
+                       0.5))
 
 (check-twice-faster? 10007 0.4)
 (check-twice-faster? 10009 0.4)

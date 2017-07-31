@@ -56,10 +56,10 @@
 (#%require rackunit)
 
 (define-simple-check (check-prime? n)
-                     (prime? n 20))
+  (prime? n 20))
 
 (define-simple-check (check-not-prime? n)
-                     (not (prime? n 20)))
+  (not (prime? n 20)))
 
 ; Verify that the procedure works
 (check-prime? 1)

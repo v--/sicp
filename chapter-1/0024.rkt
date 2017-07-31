@@ -43,8 +43,8 @@
 (#%require "../support/measure-procedure.rkt")
 
 (define-simple-check (check/= a b tolerance)
-                     (< (abs (- (/ a b) 1))
-                        tolerance))
+  (< (abs (- (/ a b) 1))
+     tolerance))
 
 (let ([t1 (measure-procedure fast-prime? 1009 20)]
       [t2 (measure-procedure fast-prime? 1000003 20)]

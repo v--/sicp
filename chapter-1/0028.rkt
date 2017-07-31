@@ -24,8 +24,9 @@
 
 (define (miller-rabin-test n)
   (define (try-it a)
-    (let ([exp (expmod a n n)])
-      (or (= exp 0) (= exp a))))
+    (define (frobnicate exp)
+      (or (= exp 0) (= exp a)))
+    (frobnicate (expmod a n n)))
   (try-it (+ 1 (random (- n 1)))))
 
 (define (prime? n times)
@@ -35,14 +36,16 @@
         [else false]))
 
 (define (expmod base exp m)
+  (define (frobnicate rem)
+    (if (or (= rem 1)
+            (= rem (- m 1))
+            (not (= rem (remainder 1 m))))
+        rem
+        0))
+
   (cond [(= exp 0) 1]
         [(even? exp)
-         (let ([rem (remainder (square (expmod base (/ exp 2) m)) m)])
-           (if (or (= rem 1)
-                   (= rem (- m 1))
-                   (not (= rem (remainder 1 m))))
-               rem
-               0))]
+         (frobnicate (remainder (square (expmod base (/ exp 2) m)) m))]
         [else
          (remainder (* base (expmod base (- exp 1) m))
                     m)]))

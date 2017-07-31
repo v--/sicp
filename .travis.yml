@@ -7,4 +7,4 @@ before_install:
   - raco pkg install sicp
 
 script:
-  raco test .
+  raco test chapter-*

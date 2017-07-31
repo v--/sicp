@@ -33,10 +33,10 @@
 
 ; Solution
 ;
-; To obtain p' and q', we will first find find the result of repeatedly applying
+; To obtain p' and q', we first find find the result of repeatedly applying
 ;   T_(pq) (a, b) = (bq + aq + ap, bp + aq).
 ;
-; It is sufficient to compute only the second element of the result pair, because it will contain
+; It is sufficient to compute only the second element of the result pair, because it contains
 ; both the desired p' and q'. Thus we have the following equation:
 ;   bp' + aq' = (bp + aq)p + (bq + aq + ap)q.
 ;

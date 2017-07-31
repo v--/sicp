@@ -6,7 +6,7 @@
 
 ; Solution
 ;
-; We will first prove that
+; We first prove that
 ;   Fib(n) = (phi^n - psi^n) / sqrt(5),                                                          (1)
 ; where psi = (1 - sqrt(5)) / 2.
 ; We begin by rewriting the Fibonacci function definition for n + 1:
@@ -18,7 +18,7 @@
 ;
 ;   phi^(n + 1) - psi^(n + 1) = (phi^n - psi^n) - (phi^(n - 1) - psi^(n - 1)).                   (2)
 ;
-; We will use this identity later to rebuild the recursive definition for Fib(n).
+; We use this identity later to rebuild the recursive definition for Fib(n).
 ; In order to be able to do this, we must first prove that (2) holds for all positive integers.
 ;
 ; Lemma 1:
@@ -36,13 +36,13 @@
 ;   thus we have proved that (2) holds for all integers n >= 1.
 ; QED
 ;
-; Next, we will prove that (1) holds for all non-negative integers.
+; Next, we prove that (1) holds for all non-negative integers.
 ;
 ; Lemma 2:
 ;   Fib(n) = (phi^n - psi^n) / sqrt(5), n >= 0
 ;
 ; Proof:
-;   We will use mathematical induction with two base cases.
+;   We use mathematical induction with two base cases.
 ;
 ;   Case n = 0:
 ;     Fib(0) = 0 and
@@ -67,7 +67,7 @@
 ;   This concludes the proof.
 ; QED
 ;
-; In the following theorem, we will prove the main result - Fib(n) is the closest integer to phi^n / sqrt(5).
+; In the following theorem, we prove the main result - Fib(n) is the closest integer to phi^n / sqrt(5).
 ;
 ; Theorem:
 ;   | phi^n / sqrt(5) - Fib(n) | < 1 / 2.                                                        (3)
@@ -81,7 +81,7 @@
 ;
 ;     | psi^n | < sqrt(5) / 2.                                                                   (4)
 ;
-;   We will now prove that (4) holds for n >= 0.
+;   We now prove that (4) holds for n >= 0.
 ;   psi ~ -0.62 is less than 1, thus | psi^n | <= | psi | for any n >= 1.
 ;   psi^0 = 1 is larger than psi, thus | psi^n | <= 1 for any n >= 0.
 ;   Since sqrt(5) / 2 ~ 1.12, we can finally conclude that | psi^n | < sqrt(5) / 2 for any n >= 0.

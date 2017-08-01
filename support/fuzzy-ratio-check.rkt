@@ -1,6 +1,6 @@
 #lang racket
 
-(#%require rackunit)
+(require rackunit)
 
 (define (fuzzy-ratio-equals? a b tolerance)
   (< (abs (- (/ a b) 1))

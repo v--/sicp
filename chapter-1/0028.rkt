@@ -20,7 +20,7 @@
 
 ; Solution
 
-(#%require racket/base)
+(#%require racket/base) ; for random
 
 (define (miller-rabin-test n)
   (define (try-it a)

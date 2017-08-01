@@ -33,7 +33,7 @@
 ; This can be seen as follows:
 
 (#%require rackunit)
-(#%require racket/base)
+(#%require racket/base) ; for void
 
 (define x 1)
 (new-if #f (set! x 2) (void))

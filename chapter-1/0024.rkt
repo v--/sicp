@@ -11,7 +11,7 @@
 ; Solution
 ; Original definitions
 
-(#%require racket/base)
+(#%require racket/base) ; for random
 
 (define (expmod base exp m)
   (cond ((= exp 0) 1)

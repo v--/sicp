@@ -1,5 +1,7 @@
 #lang sicp
 
+(require (only-in math prime? coprime?))
+
 ; Exercise 1.33
 ;
 ; You can obtain an even more general version of accumulate (exercise 1.32) by introducing
@@ -26,15 +28,8 @@
 
 ; Define and verify sum-of-prime-squares
 
-(#%require math) ; for prime? and coprime?
-
-(define (square x)
-  (* x x))
-
 (define (sum-of-prime-squares a b)
   (filtered-accumulate + 0 square a inc b prime?))
-
-(#%require rackunit)
 
 (check-equal? (sum-of-prime-squares 1 10) 87)
 

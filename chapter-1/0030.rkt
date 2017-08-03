@@ -22,8 +22,6 @@
         (iter (next a) (+ result (term a)))))
   (iter a 0))
 
-(#%require rackunit)
-
 (define (identity x) x)
 (define (double-inc x) (+ x 2))
 (check-equal? (sum identity 0 inc 10) 55)

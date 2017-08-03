@@ -8,8 +8,6 @@
 
 ; Solution
 
-(#%require rackunit)
-
 (check-equal? 10
               10)
 

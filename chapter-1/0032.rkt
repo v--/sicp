@@ -49,8 +49,6 @@
   (accumulate-iter * 1 term a next b))
 
 ; Now, verify that the procedures work equivalently.
-(#%require rackunit)
-
 (define (identity x) x)
 (define (double-inc x) (+ x 2))
 (check-equal? (sum-iter identity 0 inc 10) 55)

@@ -28,9 +28,6 @@
 
 ; Define a tan procedure
 
-(define (square x)
-  (* x x))
-
 (define (tan x k)
   (define minus-square-x (- (square x)))
   (cont-frac (lambda (i) (if (= i 1) x minus-square-x))
@@ -38,8 +35,6 @@
              k))
 
 ; Verify that the lambda for D_i works
-(#%require rackunit)
-(#%require racket/math) ; for pi
 
 (check-= (tan 0 100)
          0

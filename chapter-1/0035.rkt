@@ -31,8 +31,6 @@
   (try first-guess))
 
 ; Verify that phi can be approximated using the fixed-point procedure.
-(#%require rackunit)
-
 (check-= (fixed-point (lambda (x) (+ 1 (/ 1 x))) 1)
          (/ (+ 1 (sqrt 5)) 2)
          1e-3)

@@ -23,8 +23,6 @@
   (iter k 0))
 
 ; Verify that the lambda for D_i works
-(#%require rackunit)
-
 (check-= (cont-frac (lambda (i) 1.0)
                     (lambda (i) (if (= (remainder i 3) 2)
                                     (* (+ (quotient i 3) 1) 2)

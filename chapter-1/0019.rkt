@@ -53,9 +53,6 @@
 ;
 ; The desired code becomes
 
-(define (square x)
-  (* x x))
-
 (define (p-prime p q)
   (+ (square p)
      (square q)))
@@ -63,8 +60,6 @@
 (define (q-prime p q)
   (+ (* 2 p q)
      (square q)))
-
-(#%require rackunit)
 
 (check-equal? (fib 0) 0)
 (check-equal? (fib 1) 1)

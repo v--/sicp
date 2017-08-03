@@ -20,14 +20,11 @@
 
 (define (f-iter n)
   (define (f-impl a b c count)
-    (case count
-      (0 c)
-      (1 b)
-      (2 a)
-      (else (f-impl (+ a (* 2 b) (* 3 c)) a b (- count 1)))))
-(f-impl 2 1 0 n))
-
-(#%require rackunit)
+    (cond [(= count 0) c]
+          [(= count 1) b]
+          [(= count 2) a]
+          [else (f-impl (+ a (* 2 b) (* 3 c)) a b (- count 1))]))
+  (f-impl 2 1 0 n))
 
 ; Verify that the iterative procedure yields correct values
 (check-equal? (f-iter 0) 0)

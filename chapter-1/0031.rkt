@@ -31,8 +31,6 @@
   (iter a 1))
 
 ; First, verify that the procedures work equivalently.
-(#%require rackunit)
-
 (define (identity x) x)
 (define (double-inc x) (+ x 2))
 (check-equal? (product-iter identity 1 inc 5) 120)
@@ -65,8 +63,5 @@
        (square (inc (* 2 k)))))
 
   (product-iter term 1.0 inc n))
-
-(define (square x)
-  (* x x))
 
 (check-= (* 4 (pi-product 1000)) 3.14159 1e-3)

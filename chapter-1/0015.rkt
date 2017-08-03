@@ -26,8 +26,6 @@
 ; Solution
 ; In order to determine the number of applications of p, we use substitution
 
-(#%require rackunit)
-
 (define-simple-check (check-value x) (= x (sine 12.15)))
 
 (check-value (sine 12.15))

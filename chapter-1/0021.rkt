@@ -18,12 +18,7 @@
 (define (divides? a b)
   (= (remainder b a) 0))
 
-(define (square x)
-  (* x x))
-
 ; Verify that 199 and 1999 are prime, while 19999 is not.
-(#%require rackunit)
-
 (check-equal? (smallest-divisor 199) 199)
 (check-equal? (smallest-divisor 1999) 1999)
 (check-equal? (smallest-divisor 19999) 7)

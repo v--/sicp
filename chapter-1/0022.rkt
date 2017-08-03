@@ -14,8 +14,8 @@
   (start-prime-test n (runtime)))
 
 (define (start-prime-test n start-time)
-  (if (prime? n)
-      (report-prime (- (runtime) start-time))))
+  (when (prime? n)
+    (report-prime (- (runtime) start-time))))
 
 (define (report-prime elapsed-time)
   (display " *** ")
@@ -48,9 +48,6 @@
 (define (prime? n)
   (= n (smallest-divisor n)))
 
-(define (square x)
-  (* x x))
-
 ; We will divert from the precise exercise requirements to allow automated tests.
 ; First, we write a search-for-primes procedure that returns a list
 ; with the three smallest prime numbers that are larger than n.
@@ -64,9 +61,7 @@
                                     (cons i result)
                                     result))))
 
-  (search-for-primes-iter (if (odd? n) n (+ n 1)) nil))
-
-(#%require rackunit)
+  (search-for-primes-iter (if (odd? n) n (+ n 1)) null))
 
 (check-equal? (search-for-primes 1000) (list 1019 1013 1009))
 (check-equal? (search-for-primes 10000) (list 10037 10009 10007))
@@ -78,8 +73,8 @@
 ; computing the largest prime number smaller than 1000, 10 000, 100 000 and 1 000 000 and compare them.
 ; The tests may fail because of fluctuations in computer performance.
 
-(#%require "../support/measure-procedure.rkt")
-(#%require "../support/fuzzy-ratio-check.rkt")
+(require support/measure-procedure)
+(require support/fuzzy-checks)
 
 (let* ([t1 (measure-procedure prime? 997)]
        [t2 (measure-procedure prime? 9973)]

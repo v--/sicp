@@ -25,9 +25,6 @@
   (try first-guess 0))
 
 ; We compare the number of steps taken using procedures with and without average dumping.
-(#%require rackunit)
-(#%require racket/base) ; for let-values
-
 (define (transform x)
   (/ (log 1000) (log x)))
 

@@ -14,9 +14,6 @@
 ; Solution
 ; Original definitions
 
-(define (square x)
-  (* x x))
-
 (define (fast-expt b n)
   (cond ((= n 0) 1)
         ((even? n) (square (fast-expt b (/ n 2))))

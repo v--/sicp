@@ -45,8 +45,6 @@
   (* (/ dx 3)
      (sum iter 0 inc n)))
 
-(#%require rackunit)
-
 ; Verify that both implementations work
 (check-= (naive-integral cube 0 1 100) 1/4 1e-3)
 (check-= (simpson-integral cube 0 1 100) 1/4 1e-3)

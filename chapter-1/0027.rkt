@@ -19,8 +19,6 @@
 
   (fermat-test-iter 0))
 
-(#%require rackunit)
-
 ; Verify that the procedure works
 (check-pred fermat-test 1)
 (check-pred fermat-test 2)

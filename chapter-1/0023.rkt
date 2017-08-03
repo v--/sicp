@@ -48,9 +48,8 @@
       3
       (+ n 2)))
 
-(#%require rackunit)
-(#%require "../support/measure-procedure.rkt")
-(#%require "../support/fuzzy-ratio-check.rkt")
+(require support/measure-procedure)
+(require support/fuzzy-checks)
 
 (define-simple-check (check-twice-faster? n)
   (fuzzy-ratio-equals? (* (measure-procedure fast-smallest-divisor n) 2)

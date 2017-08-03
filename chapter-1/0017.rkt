@@ -18,8 +18,6 @@
 
 ; Solution
 
-(#%require rackunit)
-
 (define (double x)
   (+ x x))
 

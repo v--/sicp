@@ -1,10 +1,7 @@
 language: c
 
 before_install:
-  - sudo add-apt-repository --yes ppa:plt/racket
-  - sudo apt update
   - sudo apt install racket
-  - raco pkg install sicp
 
 script:
-  raco test chapter-*
+  make test

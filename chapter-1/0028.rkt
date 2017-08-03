@@ -20,8 +20,6 @@
 
 ; Solution
 
-(#%require racket/base) ; for random
-
 (define (miller-rabin-test n)
   (define (try-it a)
     (define (frobnicate exp)
@@ -50,13 +48,8 @@
          (remainder (* base (expmod base (- exp 1) m))
                     m)]))
 
-(define (square x)
-  (* x x))
-
 (define (congruent a b modulo)
   (= (remainder a modulo) (remainder b modulo)))
-
-(#%require rackunit)
 
 (define-simple-check (check-prime? n)
   (prime? n 20))

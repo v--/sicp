@@ -33,10 +33,6 @@
 (define (good-enough? guess x)
   (< (abs (- (square guess) x)) 0.001))
 
-(define (square x) (* x x))
-
-(#%require rackunit)
-
 ; The `sqrt` procedure fails for sufficiently small numbers, simply because they are too small for the tolerance level.
 (check > (- (sqrt 9e-6) 3e-3) 1e-3)
 

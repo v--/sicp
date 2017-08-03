@@ -22,8 +22,6 @@
 ; This can be easily seen by aliasing repeated applications of remainder and calculating
 ; how much times each one of the aliases is evaluated.
 
-(#%require rackunit)
-
 (define-simple-check (check-two? x) (= x 2))
 
 (check-two? (gcd 206 40))

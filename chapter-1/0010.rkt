@@ -32,8 +32,6 @@
 ; Solution
 ; This exercise is more easily done backwards. First, we find closed-form expressions for `f`, `g` and `h`.
 
-(#%require rackunit)
-
 ; f(n) = A(0, n) = 2 * n
 (check-equal? (f 3) 6)
 

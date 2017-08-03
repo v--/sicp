@@ -16,8 +16,6 @@
 (define (a-plus-abs-b-2 a b)
   (+ a (abs b)))
 
-(#%require rackunit)
-
 (check-equal? (a-plus-abs-b 1 +2) 3)
 (check-equal? (a-plus-abs-b 1 -2) 3)
 (check-equal? (a-plus-abs-b 1 -2) (a-plus-abs-b-2 1 -2))

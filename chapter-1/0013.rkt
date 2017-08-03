@@ -101,8 +101,6 @@
 (define (fib2 n)
   (/ (- (expt phi n) (expt psi n)) (sqrt 5)))
 
-(#%require rackunit)
-
 (check-= (fib1 1) (fib2 1) 1e-3)
 (check-= (fib1 5) (fib2 5) 1e-3)
 (check-= (fib1 10) (fib2 10) 1e-3)

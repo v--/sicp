@@ -9,11 +9,6 @@
 
 ; Then we have
 
-(#%require rackunit)
-
-(define (square x)
-  (* x x))
-
 (check-equal? (f square)
               4)
 

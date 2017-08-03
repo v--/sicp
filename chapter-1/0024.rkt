@@ -11,8 +11,6 @@
 ; Solution
 ; Original definitions
 
-(#%require racket/base) ; for random
-
 (define (expmod base exp m)
   (cond ((= exp 0) 1)
         ((even? exp)
@@ -32,19 +30,12 @@
         ((fermat-test n) (fast-prime? n (- times 1)))
         (else false)))
 
-(define (square x)
-  (* x x))
-
 ; We verify that the fast-prime algorithm's running time grows ~2 times when testing the smallest
 ; primes that are larger than, respectively, 1000 and 1 000 000. A large tolerance is chosen
 ; because of both the non-determinism the algorithm and computer performance fluctuations.
 
-(#%require rackunit)
-(#%require "../support/measure-procedure.rkt")
-
-(define-simple-check (check/= a b tolerance)
-  (< (abs (- (/ a b) 1))
-     tolerance))
+(require support/measure-procedure)
+(require support/fuzzy-checks)
 
 (let ([t1 (measure-procedure fast-prime? 1009 20)]
       [t2 (measure-procedure fast-prime? 1000003 20)]

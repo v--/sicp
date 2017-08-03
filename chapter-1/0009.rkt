@@ -20,8 +20,6 @@
 
 ; Solution
 
-(#%require rackunit)
-
 (define-simple-check (check-nine? x) (= x 9))
 
 ; The first process is recursive

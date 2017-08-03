@@ -60,8 +60,6 @@
 
 (define inverse-phi (/ 1.6180339887))
 
-(#%require rackunit)
-
 ; The minimal number of iterations is 10.
 (define (check-cont-frac-impl impl)
   (check-= (impl (lambda (i) 1.0)

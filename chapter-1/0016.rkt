@@ -7,9 +7,6 @@
 
 ; Solution
 
-(define (square x)
-  (* x x))
-
 (define (expt b n)
   (expt-iter b n 1))
 
@@ -17,8 +14,6 @@
   (cond [(= n 0) accum]
         [(even? n) (expt-iter (square b) (/ n 2) accum)]
         [else (expt-iter b (- n 1) (* accum b))]))
-
-(#%require rackunit)
 
 (check-equal? (expt 2 0) 1)
 (check-equal? (expt 2 1) 2)

@@ -96,8 +96,6 @@
 ;
 ; Which yields 4 possible coin combinations.
 
-(#%require rackunit)
-
 (check-equal? (count-change 11) 4)
 
 ; T(n, k) is the time complexity for count-change for coin kinds k that was inferred from the call tree.
@@ -146,8 +144,8 @@
       (+ (car list) (sum (cdr list)))))
 
 (define (integer-list start end)
-  (cond [(> start end) nil]
-        [(= start end) (cons start nil)]
+  (cond [(> start end) null]
+        [(= start end) (cons start null)]
         [else (cons start (integer-list (inc start) end))]))
 
 (define (divides x y)

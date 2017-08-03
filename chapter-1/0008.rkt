@@ -31,10 +31,6 @@
       (* 2 guess))
     3))
 
-(define (square x) (* x x))
-
-(#%require rackunit)
-
 (check-= (cube-root 8) 2 1e-3)
 (check-= (cube-root 8e+9) 2e+3 1e-3)
 (check-= (cube-root 8e-9) 2e-3 1e-3)

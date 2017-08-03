@@ -7,8 +7,6 @@
 
 ; Solution
 
-(#%require rackunit)
-
 (check-equal? (/ (+ 5
                     4
                     (- 2

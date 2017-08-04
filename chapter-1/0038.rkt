@@ -1,5 +1,7 @@
 #lang sicp
 
+(require (only-in chapter-1/0037 cont-frac))
+
 ; Exercise 1.38
 ;
 ; In 1737, the Swiss mathematician Leonhard Euler published a memoir De Fractionibus Continuis,
@@ -11,17 +13,6 @@
 ; based on Euler's expansion.
 
 ; Solution
-; Original definitions
-
-(define (cont-frac n d k)
-  (define (iter m result)
-    (if (= m 0)
-        result
-        (iter (- m 1)
-              (/ (n m) (+ (d m) result)))))
-
-  (iter k 0))
-
 ; Verify that the lambda for D_i works
 (check-= (cont-frac (lambda (i) 1.0)
                     (lambda (i) (if (= (remainder i 3) 2)

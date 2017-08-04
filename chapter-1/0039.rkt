@@ -1,5 +1,7 @@
 #lang sicp
 
+(require (only-in chapter-1/0037 cont-frac))
+
 ; Exercise 1.39
 ;
 ; A continued fraction representation of the tangent function was published in 1770
@@ -15,17 +17,6 @@
 ; compute, as in exercise 1.37.
 
 ; Solution
-; Original definitions
-
-(define (cont-frac n d k)
-  (define (iter m result)
-    (if (= m 0)
-        result
-        (iter (- m 1)
-              (/ (n m) (+ (d m) result)))))
-
-  (iter k 0))
-
 ; Define a tan procedure
 
 (define (tan x k)

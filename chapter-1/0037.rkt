@@ -70,3 +70,5 @@
 
 (check-cont-frac-impl cont-frac-rec)
 (check-cont-frac-impl cont-frac-iter)
+
+(provide (rename-out [cont-frac-iter cont-frac]))

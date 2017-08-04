@@ -38,12 +38,12 @@
 
 (check-= (tan 0 100)
          0
-         1e-3)
+         default-tolerance)
 
 (check-= (tan (/ pi 4) 100)
          1
-         1e-3)
+         default-tolerance)
 
 (check-= (tan (/ pi 3) 100)
          (/ (sqrt 3) (sqrt 1))
-         1e-3)
+         default-tolerance)

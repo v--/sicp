@@ -14,7 +14,7 @@
 ; Instead of printing approximations, we return the number of steps required.
 
 (define (close-enough? v1 v2)
-  (< (abs (- v1 v2)) 1e-5))
+  (< (abs (- v1 v2)) default-tolerance))
 
 (define (fixed-point f first-guess)
   (define (try guess steps)
@@ -25,12 +25,13 @@
   (try first-guess 0))
 
 ; We compare the number of steps taken using procedures with and without average dumping.
+
 (define (transform x)
   (/ (log 1000) (log x)))
 
 (let-values ([(x steps) (fixed-point transform 2)])
-  (check-= x 4.555 1e-3)
-  (check-equal? steps 33))
+  (check-= x 4.555 default-tolerance)
+  (check-equal? steps 22))
 
 (define (damped x)
   (/ (+ (/ (log 1000) (log x))
@@ -38,5 +39,5 @@
      2))
 
 (let-values ([(x steps) (fixed-point damped 2)])
-  (check-= x 4.555 1e-3)
-  (check-equal? steps 8))
+  (check-= x 4.555 default-tolerance)
+  (check-equal? steps 6))

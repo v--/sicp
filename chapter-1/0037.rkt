@@ -38,7 +38,7 @@
 
 ; Solution
 
-(define (cont-frac n d k)
+(define (cont-frac-rec n d k)
   (define limit (+ k 1))
   (define (iter m)
     (if (= m limit)
@@ -68,5 +68,5 @@
            inverse-phi
            1e-4))
 
-(check-cont-frac-impl cont-frac)
+(check-cont-frac-impl cont-frac-rec)
 (check-cont-frac-impl cont-frac-iter)

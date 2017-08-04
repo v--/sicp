@@ -1,5 +1,7 @@
 #lang sicp
 
+(require support/fuzzy-checks)
+
 ; Exercise 1.7
 ;
 ; The good-enough? test used in computing square roots will not be very effective
@@ -31,10 +33,10 @@
   (/ (+ x y) 2))
 
 (define (good-enough? guess x)
-  (< (abs (- (square guess) x)) 0.001))
+  (fuzzy-equals? (square guess) x))
 
 ; The `sqrt` procedure fails for sufficiently small numbers, simply because they are too small for the tolerance level.
-(check > (- (sqrt 9e-6) 3e-3) 1e-3)
+(check > (- (sqrt 9e-6) 3e-3) default-tolerance)
 
 ; The `sqrt` procedure also fails for sufficiently large numbers, but because of the limitations
 ; of floating-point arithmetic. More specifically, numbers stop being "dense" enough
@@ -42,7 +44,7 @@
 ; As a side effect, either subtracting numbers that are "close enough" results in zero
 ; and the `good-enough?` check passes (e.g. 9e+100) or `sqrt-iter` enters infinite recursion
 ; because the guesses converge at some point, but `good-enough?` still doesn't pass (e.g. 9e+60).
-(check > (- (sqrt 9e+100) 3e+50) 1e-3)
+(check > (- (sqrt 9e+100) 3e+50) default-tolerance)
 
 ; `new-sqrt` uses the heuristic described in the exercise description.
 ; Reimplementing only `good-enough?` suffices, however `sqrt-iter` is also refactored to pass
@@ -59,10 +61,10 @@
       (new-sqrt-iter new-guess x)))
 
 (define (new-good-enough? guess new-guess x)
-  (< (abs (/ (- new-guess guess) guess)) 1e-3))
+  (< (abs (/ (- new-guess guess) guess)) default-tolerance))
 
 ; `new-sqrt` doesn't have the tolerance problem.
-(check-= (new-sqrt 9e-6) 3e-3 1e-3)
+(check-= (new-sqrt 9e-6) 3e-3 default-tolerance)
 
 ; Large numbers still have precision problems, but at least the infinite recursion is avoided.
 (check-= (new-sqrt 9e+60) 3e+30 1e+20)

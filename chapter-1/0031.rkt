@@ -64,4 +64,4 @@
 
   (product-iter term 1.0 inc n))
 
-(check-= (* 4 (pi-product 1000)) 3.14159 1e-3)
+(check-= (* 4 (pi-product 1000)) 3.14159 default-tolerance)

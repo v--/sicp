@@ -7,7 +7,7 @@
 
 ; Solution
 
-(define (expt b n)
+(define (expt-rec b n)
   (expt-iter b n 1))
 
 (define (expt-iter b n accum)

@@ -11,12 +11,9 @@
   (find-divisor n 2))
 
 (define (find-divisor n test-divisor)
-  (cond ((> (square test-divisor) n) n)
-        ((divides? test-divisor n) test-divisor)
-        (else (find-divisor n (+ test-divisor 1)))))
-
-(define (divides? a b)
-  (= (remainder b a) 0))
+  (cond [(> (square test-divisor) n) n]
+        [(divides? test-divisor n) test-divisor]
+        [else (find-divisor n (+ test-divisor 1))]))
 
 ; Verify that 199 and 1999 are prime, while 19999 is not.
 (check-equal? (smallest-divisor 199) 199)

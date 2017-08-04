@@ -1,9 +1,9 @@
 #lang sicp
 
-(define (fuzzy-equals? a b [tolerance tolerance])
+(define (fuzzy-equals? a b [tolerance default-tolerance])
   (< (abs (- a b)) tolerance))
 
-(define (fuzzy-ratio-equals? a b [tolerance tolerance])
+(define (fuzzy-ratio-equals? a b [tolerance default-tolerance])
   (< (abs (- (/ a b) 1))
      tolerance))
 

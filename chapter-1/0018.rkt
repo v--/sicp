@@ -8,12 +8,6 @@
 
 ; Solution
 
-(define (double x)
-  (+ x x))
-
-(define (halve x)
-  (/ x 2))
-
 (define (fast-*-iter a b accum)
   (cond [(= b 0) accum]
         [(even? b) (fast-*-iter (double a) (halve b) accum)]

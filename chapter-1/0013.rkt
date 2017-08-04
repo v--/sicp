@@ -90,17 +90,17 @@
 
 ; Here are are few tests to verify that Fib(n) = (phi^n - psi^n) / sqrt(5)
 
-(define (fib1 n)
+(define (fib-rec n)
   (if (< n 2)
       n
-      (+ (fib1 (- n 1)) (fib1 (- n 2)))))
+      (+ (fib-rec (- n 1)) (fib-rec (- n 2)))))
 
 (define phi (/ (+ 1 (sqrt 5)) 2))
 (define psi (/ (- 1 (sqrt 5)) 2))
 
-(define (fib2 n)
+(define (fib-direct n)
   (/ (- (expt phi n) (expt psi n)) (sqrt 5)))
 
-(check-= (fib1 1) (fib2 1) 1e-3)
-(check-= (fib1 5) (fib2 5) 1e-3)
-(check-= (fib1 10) (fib2 10) 1e-3)
+(check-= (fib-rec 1) (fib-direct 1) default-tolerance)
+(check-= (fib-rec 5) (fib-direct 5) default-tolerance)
+(check-= (fib-rec 10) (fib-direct 10) default-tolerance)

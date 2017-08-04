@@ -22,7 +22,7 @@
       (cube-root-iter new-guess x)))
 
 (define (good-enough? guess new-guess x)
-  (< (abs (/ (- new-guess guess) guess)) 1e-3))
+  (< (abs (/ (- new-guess guess) guess)) default-tolerance))
 
 (define (improve guess x)
   (/
@@ -31,6 +31,6 @@
       (* 2 guess))
     3))
 
-(check-= (cube-root 8) 2 1e-3)
-(check-= (cube-root 8e+9) 2e+3 1e-3)
-(check-= (cube-root 8e-9) 2e-3 1e-3)
+(check-= (cube-root 8) 2 default-tolerance)
+(check-= (cube-root 8e+9) 2e+3 default-tolerance)
+(check-= (cube-root 8e-9) 2e-3 default-tolerance)

@@ -12,13 +12,13 @@
 ; Original definitions
 
 (define (expmod base exp m)
-  (cond ((= exp 0) 1)
-        ((even? exp)
+  (cond [(= exp 0) 1]
+        [(even? exp)
          (remainder (square (expmod base (/ exp 2) m))
-                    m))
-        (else
+                    m)]
+        [else
           (remainder (* base (expmod base (- exp 1) m))
-                     m))))
+                     m)]))
 
 (define (fermat-test n)
   (define (try-it a)
@@ -26,9 +26,9 @@
   (try-it (+ 1 (random (- n 1)))))
 
 (define (fast-prime? n times)
-  (cond ((= times 0) true)
-        ((fermat-test n) (fast-prime? n (- times 1)))
-        (else false)))
+  (cond [(= times 0) true]
+        [(fermat-test n) (fast-prime? n (- times 1))]
+        [else false]))
 
 ; We verify that the fast-prime algorithm's running time grows ~2 times when testing the smallest
 ; primes that are larger than, respectively, 1000 and 1 000 000. A large tolerance is chosen

@@ -1,5 +1,7 @@
 #lang sicp
 
+(require (only-in chapter-1/0021 smallest-divisor))
+
 ; Exercise 1.23
 ;
 ; The smallest-divisor procedure shown at the start of this section does lots of needless testing:
@@ -15,22 +17,6 @@
 ; of the speeds of the two algorithms, and how do you explain the fact that it is different from 2?
 
 ; Solution
-; Original definitions
-
-(define (smallest-divisor n)
-  (find-divisor n 2))
-
-(define (find-divisor n test-divisor)
-  (cond ((> (square test-divisor) n) n)
-        ((divides? test-divisor n) test-divisor)
-        (else (find-divisor n (+ test-divisor 1)))))
-
-(define (divides? a b)
-  (= (remainder b a) 0))
-
-(define (square x)
-  (* x x))
-
 ; Now we implement the optimized procedure mentioned in the exercise description and show
 ; that it's generally twice faster than the naive implementation. A large tolerance is chosen
 ; because of computer performance fluctuations (smaller numbers have even been skipped).

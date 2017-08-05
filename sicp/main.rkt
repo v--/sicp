@@ -7,8 +7,6 @@
 
 (define runtime current-process-milliseconds)
 
-(define (identity x) x)
-
 (define (square x)
   (* x x))
 

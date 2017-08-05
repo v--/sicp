@@ -1,5 +1,7 @@
 #lang sicp
 
+(require (only-in rackunit define-simple-check))
+
 (define (fuzzy-equals? a b [tolerance default-tolerance])
   (< (abs (- a b)) tolerance))
 

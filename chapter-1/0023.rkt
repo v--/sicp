@@ -34,20 +34,23 @@
       3
       (+ n 2)))
 
-(require support/measure-procedure)
-(require support/fuzzy-checks)
 
-(define-simple-check (check-twice-faster? n)
-  (fuzzy-ratio-equals? (* (measure-procedure fast-smallest-divisor n) 2)
-                       (measure-procedure smallest-divisor n)
-                       0.5))
+(module* test #f
+  (require rackunit)
+  (require support/measure-procedure)
+  (require support/fuzzy-checks)
 
-(check-twice-faster? 10007 0.4)
-(check-twice-faster? 10009 0.4)
-(check-twice-faster? 10037 0.4)
-(check-twice-faster? 100003 0.2)
-(check-twice-faster? 100019 0.2)
-(check-twice-faster? 100043 0.2)
-(check-twice-faster? 1000003 0.1)
-(check-twice-faster? 1000033 0.1)
-(check-twice-faster? 1000037 0.1)
+  (define-simple-check (check-twice-faster? n)
+    (fuzzy-ratio-equals? (* (measure-procedure fast-smallest-divisor n) 2)
+                         (measure-procedure smallest-divisor n)
+                         0.5))
+
+  (check-twice-faster? 10007 0.4)
+  (check-twice-faster? 10009 0.4)
+  (check-twice-faster? 10037 0.4)
+  (check-twice-faster? 100003 0.2)
+  (check-twice-faster? 100019 0.2)
+  (check-twice-faster? 100043 0.2)
+  (check-twice-faster? 1000003 0.1)
+  (check-twice-faster? 1000033 0.1)
+  (check-twice-faster? 1000037 0.1))

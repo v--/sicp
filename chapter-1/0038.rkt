@@ -14,10 +14,14 @@
 
 ; Solution
 ; Verify that the lambda for D_i works
-(check-= (cont-frac (lambda (i) 1.0)
-                    (lambda (i) (if (= (remainder i 3) 2)
-                                    (* (+ (quotient i 3) 1) 2)
-                                    1))
-                    100)
-         (- (exp 1) 2)
-         1e-4)
+
+(module* test #f
+  (require rackunit)
+
+  (check-= (cont-frac (lambda (i) 1.0)
+                      (lambda (i) (if (= (remainder i 3) 2)
+                                      (* (+ (quotient i 3) 1) 2)
+                                      1))
+                      100)
+           (- (exp 1) 2)
+           1e-4))

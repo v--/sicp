@@ -27,14 +27,17 @@
 
 ; Verify that the lambda for D_i works
 
-(check-= (tan 0 100)
-         0
-         default-tolerance)
+(module* test #f
+  (require rackunit)
 
-(check-= (tan (/ pi 4) 100)
-         1
-         default-tolerance)
+  (check-= (tan 0 100)
+           0
+           default-tolerance)
 
-(check-= (tan (/ pi 3) 100)
-         (/ (sqrt 3) (sqrt 1))
-         default-tolerance)
+  (check-= (tan (/ pi 4) 100)
+           1
+           default-tolerance)
+
+  (check-= (tan (/ pi 3) 100)
+           (/ (sqrt 3) (sqrt 1))
+           default-tolerance))

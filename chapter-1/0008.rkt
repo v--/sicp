@@ -31,6 +31,9 @@
       (* 2 guess))
     3))
 
-(check-= (cube-root 8) 2 default-tolerance)
-(check-= (cube-root 8e+9) 2e+3 default-tolerance)
-(check-= (cube-root 8e-9) 2e-3 default-tolerance)
+(module* test #f
+  (require rackunit)
+
+  (check-= (cube-root 8) 2 default-tolerance)
+  (check-= (cube-root 8e+9) 2e+3 default-tolerance)
+  (check-= (cube-root 8e-9) 2e-3 default-tolerance))

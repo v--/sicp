@@ -16,6 +16,9 @@
 (define (a-plus-abs-b-alt a b)
   (+ a (abs b)))
 
-(check-equal? (a-plus-abs-b 1 +2) 3)
-(check-equal? (a-plus-abs-b 1 -2) 3)
-(check-equal? (a-plus-abs-b 1 -2) (a-plus-abs-b-alt 1 -2))
+(module* test #f
+  (require rackunit)
+
+  (check-equal? (a-plus-abs-b 1 +2) 3)
+  (check-equal? (a-plus-abs-b 1 -2) 3)
+  (check-equal? (a-plus-abs-b 1 -2) (a-plus-abs-b-alt 1 -2)))

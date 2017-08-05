@@ -22,10 +22,14 @@
         (iter (next a) (+ result (term a)))))
   (iter a 0))
 
-(define (identity x) x)
-(define (double-inc x) (+ x 2))
-(check-equal? (sum identity 0 inc 10) 55)
-(check-equal? (sum identity 0 double-inc 10) 30)
 
-(define (cube x) (* x x x))
-(check-equal? (sum cube 0 inc 10) 3025)
+(module* test #f
+  (require rackunit)
+
+  (define (identity x) x)
+  (define (double-inc x) (+ x 2))
+  (check-equal? (sum identity 0 inc 10) 55)
+  (check-equal? (sum identity 0 double-inc 10) 30)
+
+  (define (cube x) (* x x x))
+  (check-equal? (sum cube 0 inc 10) 3025))

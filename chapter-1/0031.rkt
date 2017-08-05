@@ -30,31 +30,9 @@
         (iter (next a) (* result (term a)))))
   (iter a 1))
 
-; First, verify that the procedures work equivalently.
-(define (identity x) x)
-(define (double-inc x) (+ x 2))
-(check-equal? (product-iter identity 1 inc 5) 120)
-(check-equal? (product-iter identity 1 double-inc 5) 15)
-
-(check-equal? (product-iter identity 1 inc 5)
-              (product identity 1 inc 5))
-
-(check-equal? (product-iter identity 1 double-inc 5)
-              (product identity 1 double-inc 5))
-
-(define (cube x) (* x x x))
-(check-equal? (product cube 1 inc 3) 216)
-
-(check-equal? (product-iter cube 1 inc 3)
-              (product cube 1 inc 3))
-
 ; Now, define factorial.
 (define (factorial n)
   (product-iter identity 1 inc n))
-
-(check-equal? (factorial 2) 2)
-(check-equal? (factorial 4) 24)
-(check-equal? (factorial 6) 720)
 
 ; Also, define pi-product.
 (define (pi-product n)
@@ -64,4 +42,28 @@
 
   (product-iter term 1.0 inc n))
 
-(check-= (* 4 (pi-product 1000)) 3.14159 default-tolerance)
+(module* test #f
+  (require rackunit)
+
+  ; First, verify that the procedures work equivalently.
+  (define (double-inc x) (+ x 2))
+  (check-equal? (product-iter identity 1 inc 5) 120)
+  (check-equal? (product-iter identity 1 double-inc 5) 15)
+
+  (check-equal? (product-iter identity 1 inc 5)
+                (product identity 1 inc 5))
+
+  (check-equal? (product-iter identity 1 double-inc 5)
+                (product identity 1 double-inc 5))
+
+  (define (cube x) (* x x x))
+  (check-equal? (product cube 1 inc 3) 216)
+
+  (check-equal? (product-iter cube 1 inc 3)
+                (product cube 1 inc 3))
+
+  (check-equal? (factorial 2) 2)
+  (check-equal? (factorial 4) 24)
+  (check-equal? (factorial 6) 720)
+
+  (check-= (* 4 (pi-product 1000)) 3.14159 default-tolerance))

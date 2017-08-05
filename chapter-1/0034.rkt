@@ -9,11 +9,14 @@
 
 ; Then we have
 
-(check-equal? (f square)
-              4)
+(module* test #f
+  (require rackunit)
 
-(check-equal? (f (lambda (z) (* z (+ z 1))))
-              6)
+  (check-equal? (f square)
+                4)
+
+  (check-equal? (f (lambda (z) (* z (+ z 1))))
+                6))
 
 ; What happens if we (perversely) ask the interpreter to evaluate the combination (f f)? Explain.
 

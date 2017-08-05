@@ -3,12 +3,11 @@
 (require racket)
 (provide (all-from-out racket))
 
-(require rackunit)
-(provide (all-from-out rackunit))
-
 (define default-tolerance 1e-3)
 
 (define runtime current-process-milliseconds)
+
+(define (identity x) x)
 
 (define (square x)
   (* x x))
@@ -27,5 +26,8 @@
 
 (define (divides? a b)
   (= (remainder b a) 0))
+
+(define (average x y)
+  (/ (+ x y) 2))
 
 (provide (all-defined-out))

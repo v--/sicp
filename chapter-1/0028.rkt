@@ -51,27 +51,30 @@
 (define (congruent a b modulo)
   (= (remainder a modulo) (remainder b modulo)))
 
-(define-simple-check (check-prime? n)
-  (prime? n 20))
+(module* test #f
+  (require rackunit)
 
-(define-simple-check (check-not-prime? n)
-  (not (prime? n 20)))
+  (define-simple-check (check-prime? n)
+    (prime? n 20))
 
-; Verify that the procedure works
-(check-prime? 1)
-(check-prime? 2)
-(check-prime? 3)
-(check-prime? 13)
+  (define-simple-check (check-not-prime? n)
+    (not (prime? n 20)))
 
-(check-not-prime? 4)
-(check-not-prime? 6)
-(check-not-prime? 8)
-(check-not-prime? 9)
+  ; Verify that the procedure works
+  (check-prime? 1)
+  (check-prime? 2)
+  (check-prime? 3)
+  (check-prime? 13)
 
-; Check the Carmichael numbers
-(check-prime? 561)
-(check-prime? 1105)
-(check-prime? 1729)
-(check-prime? 2465)
-(check-prime? 2821)
-(check-prime? 6601)
+  (check-not-prime? 4)
+  (check-not-prime? 6)
+  (check-not-prime? 8)
+  (check-not-prime? 9)
+
+  ; Check the Carmichael numbers
+  (check-prime? 561)
+  (check-prime? 1105)
+  (check-prime? 1729)
+  (check-prime? 2465)
+  (check-prime? 2821)
+  (check-prime? 6601))

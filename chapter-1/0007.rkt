@@ -29,27 +29,10 @@
 (define (improve guess x)
   (average guess (/ x guess)))
 
-(define (average x y)
-  (/ (+ x y) 2))
-
 (define (good-enough? guess x)
   (fuzzy-equals? (square guess) x))
 
-; The `sqrt` procedure fails for sufficiently small numbers, simply because they are too small for the tolerance level.
-(check > (- (sqrt 9e-6) 3e-3) default-tolerance)
-
-; The `sqrt` procedure also fails for sufficiently large numbers, but because of the limitations
-; of floating-point arithmetic. More specifically, numbers stop being "dense" enough
-; and the representable differences between two numbers become greater than the tolerance.
-; As a side effect, either subtracting numbers that are "close enough" results in zero
-; and the `good-enough?` check passes (e.g. 9e+100) or `sqrt-iter` enters infinite recursion
-; because the guesses converge at some point, but `good-enough?` still doesn't pass (e.g. 9e+60).
-(check > (- (sqrt 9e+100) 3e+50) default-tolerance)
-
-; `new-sqrt` uses the heuristic described in the exercise description.
-; Reimplementing only `good-enough?` suffices, however `sqrt-iter` is also refactored to pass
-; a `new-guess` parameter to `good-enough?` to avoid "improving" the guess twice -
-; once in `sqrt-iter` and once in `good-enough?`.
+; Alternative implementation
 
 (define (new-sqrt x)
   (new-sqrt-iter 1.0 x))
@@ -63,8 +46,27 @@
 (define (new-good-enough? guess new-guess x)
   (< (abs (/ (- new-guess guess) guess)) default-tolerance))
 
-; `new-sqrt` doesn't have the tolerance problem.
-(check-= (new-sqrt 9e-6) 3e-3 default-tolerance)
+(module* test #f
+  (require rackunit)
 
-; Large numbers still have precision problems, but at least the infinite recursion is avoided.
-(check-= (new-sqrt 9e+60) 3e+30 1e+20)
+  ; The `sqrt` procedure fails for sufficiently small numbers, simply because they are too small for the tolerance level.
+  (check > (- (sqrt 9e-6) 3e-3) default-tolerance)
+
+  ; The `sqrt` procedure also fails for sufficiently large numbers, but because of the limitations
+  ; of floating-point arithmetic. More specifically, numbers stop being "dense" enough
+  ; and the representable differences between two numbers become greater than the tolerance.
+  ; As a side effect, either subtracting numbers that are "close enough" results in zero
+  ; and the `good-enough?` check passes (e.g. 9e+100) or `sqrt-iter` enters infinite recursion
+  ; because the guesses converge at some point, but `good-enough?` still doesn't pass (e.g. 9e+60).
+  (check > (- (sqrt 9e+100) 3e+50) default-tolerance)
+
+  ; `new-sqrt` uses the heuristic described in the exercise description.
+  ; Reimplementing only `good-enough?` suffices, however `sqrt-iter` is also refactored to pass
+  ; a `new-guess` parameter to `good-enough?` to avoid "improving" the guess twice -
+  ; once in `sqrt-iter` and once in `good-enough?`.
+
+  ; `new-sqrt` doesn't have the tolerance problem.
+  (check-= (new-sqrt 9e-6) 3e-3 default-tolerance)
+
+  ; Large numbers still have precision problems, but at least the infinite recursion is avoided.
+  (check-= (new-sqrt 9e+60) 3e+30 1e+20))

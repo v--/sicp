@@ -19,21 +19,24 @@
 
   (fermat-test-iter 0))
 
-; Verify that the procedure works
-(check-pred fermat-test 1)
-(check-pred fermat-test 2)
-(check-pred fermat-test 3)
-(check-pred fermat-test 13)
+(module* test #f
+  (require rackunit)
 
-(check-false (fermat-test 4))
-(check-false (fermat-test 6))
-(check-false (fermat-test 8))
-(check-false (fermat-test 9))
+  ; Verify that the procedure works
+  (check-pred fermat-test 1)
+  (check-pred fermat-test 2)
+  (check-pred fermat-test 3)
+  (check-pred fermat-test 13)
 
-; Check the given Carmichael numbers
-(check-pred fermat-test 561)
-(check-pred fermat-test 1105)
-(check-pred fermat-test 1729)
-(check-pred fermat-test 2465)
-(check-pred fermat-test 2821)
-(check-pred fermat-test 6601)
+  (check-false (fermat-test 4))
+  (check-false (fermat-test 6))
+  (check-false (fermat-test 8))
+  (check-false (fermat-test 9))
+
+  ; Check the given Carmichael numbers
+  (check-pred fermat-test 561)
+  (check-pred fermat-test 1105)
+  (check-pred fermat-test 1729)
+  (check-pred fermat-test 2465)
+  (check-pred fermat-test 2821)
+  (check-pred fermat-test 6601))

@@ -15,9 +15,12 @@
         [(divides? test-divisor n) test-divisor]
         [else (find-divisor n (+ test-divisor 1))]))
 
-; Verify that 199 and 1999 are prime, while 19999 is not.
-(check-equal? (smallest-divisor 199) 199)
-(check-equal? (smallest-divisor 1999) 1999)
-(check-equal? (smallest-divisor 19999) 7)
-
 (provide smallest-divisor)
+
+(module* test #f
+  (require rackunit)
+
+  ; Verify that 199 and 1999 are prime, while 19999 is not.
+  (check-equal? (smallest-divisor 199) 199)
+  (check-equal? (smallest-divisor 1999) 1999)
+  (check-equal? (smallest-divisor 19999) 7))

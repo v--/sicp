@@ -21,10 +21,13 @@
       1
       (+ (triangle-item (- row 1) col) (triangle-item row (- col 1)))))
 
-(check-equal? (triangle-item 0 0) 1)
-(check-equal? (triangle-item 0 10) 1)
-(check-equal? (triangle-item 10 0) 1)
+(module* test #f
+  (require rackunit)
 
-(check-equal? (triangle-item 1 1) 2)
-(check-equal? (triangle-item 2 2) 6)
-(check-equal? (triangle-item 3 3) 20)
+  (check-equal? (triangle-item 0 0) 1)
+  (check-equal? (triangle-item 0 10) 1)
+  (check-equal? (triangle-item 10 0) 1)
+
+  (check-equal? (triangle-item 1 1) 2)
+  (check-equal? (triangle-item 2 2) 6)
+  (check-equal? (triangle-item 3 3) 20))

@@ -34,11 +34,13 @@
 ; primes that are larger than, respectively, 1000 and 1 000 000. A large tolerance is chosen
 ; because of both the non-determinism the algorithm and computer performance fluctuations.
 
-(require support/measure-procedure)
-(require support/fuzzy-checks)
+(module* test #f
+  (require rackunit)
+  (require support/measure-procedure)
+  (require support/fuzzy-checks)
 
-(let ([t1 (measure-procedure fast-prime? 1009 20)]
-      [t2 (measure-procedure fast-prime? 1000003 20)]
-      [complexity-ratio (/ (log 1e6) (log 1e3))])
+  (let ([t1 (measure-procedure fast-prime? 1009 20)]
+        [t2 (measure-procedure fast-prime? 1000003 20)]
+        [complexity-ratio (/ (log 1e6) (log 1e3))])
 
-  (check/= (* t1 complexity-ratio) t2 0.5))
+    (check/= (* t1 complexity-ratio) t2 0.5)))

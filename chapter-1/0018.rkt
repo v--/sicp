@@ -16,6 +16,9 @@
 (define (fast-* a b)
   (fast-*-iter a b 0))
 
-(check-equal? (* 1 2) (fast-* 1 2))
-(check-equal? (* 11 22) (fast-* 11 22))
-(check-equal? (* 111 222) (fast-* 111 222))
+(module* test #f
+  (require rackunit)
+
+  (check-equal? (* 1 2) (fast-* 1 2))
+  (check-equal? (* 11 22) (fast-* 11 22))
+  (check-equal? (* 111 222) (fast-* 111 222)))

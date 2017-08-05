@@ -32,8 +32,11 @@
 ; `new-if`, unlike `if`, evaluates both of it's operands, since it is a procedure.
 ; This can be seen as follows:
 
-(define x 1)
-(new-if #f (set! x 2) (void))
-(check-equal? x 2)
+(module* test #f
+  (require rackunit)
+
+  (define x 1)
+  (new-if #f (set! x 2) (void))
+  (check-equal? x 2))
 
 ; Since `sqrt-iter` applies itself in it's "else" branch, infinite recursion occurs.

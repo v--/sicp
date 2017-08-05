@@ -29,15 +29,18 @@
 (define (transform x)
   (/ (log 1000) (log x)))
 
-(let-values ([(x steps) (fixed-point transform 2)])
-  (check-= x 4.555 default-tolerance)
-  (check-equal? steps 22))
-
 (define (damped x)
   (/ (+ (/ (log 1000) (log x))
         x)
      2))
 
-(let-values ([(x steps) (fixed-point damped 2)])
-  (check-= x 4.555 default-tolerance)
-  (check-equal? steps 6))
+(module* test #f
+  (require rackunit)
+
+  (let-values ([(x steps) (fixed-point transform 2)])
+    (check-= x 4.555 default-tolerance)
+    (check-equal? steps 22))
+
+  (let-values ([(x steps) (fixed-point damped 2)])
+    (check-= x 4.555 default-tolerance)
+    (check-equal? steps 6)))

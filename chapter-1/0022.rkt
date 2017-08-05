@@ -54,24 +54,27 @@
 
   (search-for-primes-iter (if (odd? n) n (+ n 1)) null))
 
-(check-equal? (search-for-primes 1000) (list 1019 1013 1009))
-(check-equal? (search-for-primes 10000) (list 10037 10009 10007))
-(check-equal? (search-for-primes 100000) (list 100043 100019 100003))
-(check-equal? (search-for-primes 1000000) (list 1000037 1000033 1000003))
 
-; Now, we empirically verify that the running time for the test is increased by roughly sqrt(10)
-; when "jumping" from one order of magnitude to the next. For this, we measure the time for
-; computing the largest prime number smaller than 1000, 10 000, 100 000 and 1 000 000 and compare them.
-; The tests may fail because of fluctuations in computer performance.
+(module* test #f
+  (require rackunit)
+  (require support/measure-procedure)
+  (require support/fuzzy-checks)
 
-(require support/measure-procedure)
-(require support/fuzzy-checks)
+  (check-equal? (search-for-primes 1000) (list 1019 1013 1009))
+  (check-equal? (search-for-primes 10000) (list 10037 10009 10007))
+  (check-equal? (search-for-primes 100000) (list 100043 100019 100003))
+  (check-equal? (search-for-primes 1000000) (list 1000037 1000033 1000003))
 
-(let* ([t1 (measure-procedure prime? 997)]
-       [t2 (measure-procedure prime? 9973)]
-       [t3 (measure-procedure prime? 99991)]
-       [t4 (measure-procedure prime? 999983)])
+  ; Now, we empirically verify that the running time for the test is increased by roughly sqrt(10)
+  ; when "jumping" from one order of magnitude to the next. For this, we measure the time for
+  ; computing the largest prime number smaller than 1000, 10 000, 100 000 and 1 000 000 and compare them.
+  ; The tests may fail because of fluctuations in computer performance.
 
-  (check/= (* t1 (sqrt 10)) t2 0.2)
-  (check/= (* t2 (sqrt 10)) t3 0.2)
-  (check/= (* t3 (sqrt 10)) t4 0.2))
+  (let* ([t1 (measure-procedure prime? 997)]
+         [t2 (measure-procedure prime? 9973)]
+         [t3 (measure-procedure prime? 99991)]
+         [t4 (measure-procedure prime? 999983)])
+
+    (check/= (* t1 (sqrt 10)) t2 0.2)
+    (check/= (* t2 (sqrt 10)) t3 0.2)
+    (check/= (* t3 (sqrt 10)) t4 0.2)))

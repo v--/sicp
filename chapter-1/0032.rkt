@@ -48,21 +48,24 @@
 (define (product-iter term a next b)
   (accumulate-iter * 1 term a next b))
 
-; Now, verify that the procedures work equivalently.
-(define (identity x) x)
-(define (double-inc x) (+ x 2))
-(check-equal? (sum-iter identity 0 inc 10) 55)
-(check-equal? (sum-iter identity 0 double-inc 10) 30)
-(check-equal? (product-iter identity 1 inc 5) 120)
 
-(check-equal? (sum-iter identity 1 inc 5)
-              (sum identity 1 inc 5))
+(module* test #f
+  (require rackunit)
 
-(check-equal? (product-iter identity 1 inc 5)
-              (product identity 1 inc 5))
+  ; Now, verify that the procedures work equivalently.
+  (define (double-inc x) (+ x 2))
+  (check-equal? (sum-iter identity 0 inc 10) 55)
+  (check-equal? (sum-iter identity 0 double-inc 10) 30)
+  (check-equal? (product-iter identity 1 inc 5) 120)
 
-(define (cube x) (* x x x))
-(check-equal? (sum-iter cube 0 inc 10) 3025)
+  (check-equal? (sum-iter identity 1 inc 5)
+                (sum identity 1 inc 5))
 
-(check-equal? (sum-iter cube 1 inc 3)
-              (sum cube 1 inc 3))
+  (check-equal? (product-iter identity 1 inc 5)
+                (product identity 1 inc 5))
+
+  (define (cube x) (* x x x))
+  (check-equal? (sum-iter cube 0 inc 10) 3025)
+
+  (check-equal? (sum-iter cube 1 inc 3)
+                (sum cube 1 inc 3)))

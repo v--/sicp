@@ -26,14 +26,12 @@
           [else (iter (next a) result)]))
   (iter a null-value))
 
-; Define and verify sum-of-prime-squares
+; Define sum-of-prime-squares
 
 (define (sum-of-prime-squares a b)
   (filtered-accumulate + 0 square a inc b prime?))
 
-(check-equal? (sum-of-prime-squares 1 10) 87)
-
-; Define and verify product-of-coprimes
+; Define product-of-coprimes
 
 (define (product-of-coprimes n)
   (define (coprime-to-n? m)
@@ -41,4 +39,10 @@
 
   (filtered-accumulate * 1 identity 1 inc (dec n) coprime-to-n?))
 
-(check-equal? (product-of-coprimes 10) 189)
+; Verify both procedures
+
+(module* test #f
+  (require rackunit)
+
+  (check-equal? (product-of-coprimes 10) 189)
+  (check-equal? (sum-of-prime-squares 1 10) 87))

@@ -20,36 +20,40 @@
 
 ; Solution
 
-(define-simple-check (check-nine? x) (= x 9))
-
-; The first process is recursive
 (define (plus-rec a b)
   (if (= a 0)
       b
       (inc (plus-rec (dec a) b))))
 
-(check-nine? (plus-rec 4 5))
-(check-nine? (inc (plus-rec (dec 4) 5)))
-(check-nine? (inc (inc (plus-rec (dec 3) 5))))
-(check-nine? (inc (inc (inc (plus-rec (dec 2) 5)))))
-(check-nine? (inc (inc (inc (inc (plus-rec (dec 1) 5))))))
-(check-nine? (inc (inc (inc (inc (plus-rec 0 5))))))
-(check-nine? (inc (inc (inc (inc 5)))))
-(check-nine? (inc (inc (inc 6))))
-(check-nine? (inc (inc 7)))
-(check-nine? (inc 8))
-(check-nine? 9)
-
-; The second process is iterative
 (define (plus-iter a b)
   (if (= a 0)
       b
       (plus-iter (dec a) (inc b))))
 
-(check-nine? (plus-iter 4 5))
-(check-nine? (plus-iter (dec 4) (inc 5)))
-(check-nine? (plus-iter (dec 3) (inc 6)))
-(check-nine? (plus-iter (dec 2) (inc 7)))
-(check-nine? (plus-iter (dec 1) (inc 8)))
-(check-nine? (plus-iter 0 9))
-(check-nine? 9)
+(module* test #f
+  (require rackunit)
+
+  ; Verify that each step of the expansion produces the same result
+  (define-simple-check (check-nine? x) (= x 9))
+
+  ; The first process is recursive
+  (check-nine? (plus-rec 4 5))
+  (check-nine? (inc (plus-rec (dec 4) 5)))
+  (check-nine? (inc (inc (plus-rec (dec 3) 5))))
+  (check-nine? (inc (inc (inc (plus-rec (dec 2) 5)))))
+  (check-nine? (inc (inc (inc (inc (plus-rec (dec 1) 5))))))
+  (check-nine? (inc (inc (inc (inc (plus-rec 0 5))))))
+  (check-nine? (inc (inc (inc (inc 5)))))
+  (check-nine? (inc (inc (inc 6))))
+  (check-nine? (inc (inc 7)))
+  (check-nine? (inc 8))
+  (check-nine? 9)
+
+  ; The second process is iterative
+  (check-nine? (plus-iter 4 5))
+  (check-nine? (plus-iter (dec 4) (inc 5)))
+  (check-nine? (plus-iter (dec 3) (inc 6)))
+  (check-nine? (plus-iter (dec 2) (inc 7)))
+  (check-nine? (plus-iter (dec 1) (inc 8)))
+  (check-nine? (plus-iter 0 9))
+  (check-nine? 9))

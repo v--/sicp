@@ -45,18 +45,21 @@
   (* (/ dx 3)
      (sum iter 0 inc n)))
 
-; Verify that both implementations work
-(check-= (naive-integral cube 0 1 100) 1/4 default-tolerance)
-(check-= (simpson-integral cube 0 1 100) 1/4 default-tolerance)
+(module* test #f
+  (require rackunit)
 
-; Verify that the simpson procedure is more accurate
-(define-simple-check (check-closer? a b target)
-  (< (abs (- a target)) (abs (- b target))))
+  ; Verify that both implementations work
+  (check-= (naive-integral cube 0 1 100) 1/4 default-tolerance)
+  (check-= (simpson-integral cube 0 1 100) 1/4 default-tolerance)
 
-(check-closer? (simpson-integral cube 0 1 100)
-               (naive-integral cube 0 1 100)
-               1/4)
+  ; Verify that the simpson procedure is more accurate
+  (define-simple-check (check-closer? a b target)
+    (< (abs (- a target)) (abs (- b target))))
 
-(check-closer? (simpson-integral cube 0 1 1000)
-               (naive-integral cube 0 1 1000)
-               1/4)
+  (check-closer? (simpson-integral cube 0 1 100)
+                 (naive-integral cube 0 1 100)
+                 1/4)
+
+  (check-closer? (simpson-integral cube 0 1 1000)
+                 (naive-integral cube 0 1 1000)
+                 1/4))

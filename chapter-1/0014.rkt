@@ -96,8 +96,6 @@
 ;
 ; Which yields 4 possible coin combinations.
 
-(check-equal? (count-change 11) 4)
-
 ; T(n, k) is the time complexity for count-change for coin kinds k that was inferred from the call tree.
 ;
 ;   T(n, k) = {
@@ -167,13 +165,18 @@
         (+ 1 (* 2 n))
         (+ 1 (sum (map reducer (integer-list 0 refined-limit)))))))
 
-(check-equal? (count-change-calls 6 1) (calculate-call-count 6 1))
-(check-equal? (count-change-calls 6 2) (calculate-call-count 6 2))
-(check-equal? (count-change-calls 6 3) (calculate-call-count 6 3))
-(check-equal? (count-change-calls 10 3) (calculate-call-count 10 3))
-(check-equal? (count-change-calls 10 4) (calculate-call-count 10 4))
-(check-equal? (count-change-calls 15 4) (calculate-call-count 15 4))
-(check-equal? (count-change-calls 15 5) (calculate-call-count 15 5))
+(module* test #f
+  (require rackunit)
+
+  (check-equal? (count-change 11) 4)
+
+  (check-equal? (count-change-calls 6 1) (calculate-call-count 6 1))
+  (check-equal? (count-change-calls 6 2) (calculate-call-count 6 2))
+  (check-equal? (count-change-calls 6 3) (calculate-call-count 6 3))
+  (check-equal? (count-change-calls 10 3) (calculate-call-count 10 3))
+  (check-equal? (count-change-calls 10 4) (calculate-call-count 10 4))
+  (check-equal? (count-change-calls 15 4) (calculate-call-count 15 4))
+  (check-equal? (count-change-calls 15 5) (calculate-call-count 15 5)))
 
 ; The space complexity is linear (again, inferred from the call tree):
 ;   S(n, k) = 2 * n + k ~ Theta(n + k).

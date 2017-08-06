@@ -14,7 +14,7 @@ We formed a study group ([weekly meeting notes](https://github.com/dimitaruzunov
 
 # Project structure
 
-All exercises are implemented using a custom language named `sicp`, defined in the [`sicp`](https://github.com/v--/sicp/blob/master/sicp) subfolder.
+All exercises are implemented using a custom language named `sicp`, defined in the [`sicp`](https://github.com/v--/sicp/blob/master/sicp) subfolder. ("custom language" is a bit of an overstatement, it's simply Racket with additional global definitions.)
 
 [`rackunit`](https://docs.racket-lang.org/rackunit/) is used for solution verification.
 

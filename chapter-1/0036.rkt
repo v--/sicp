@@ -1,5 +1,7 @@
 #lang sicp
 
+(require support/fuzzy-checks)
+
 ; Exercise 1.36
 ;
 ; Modify fixed-point so that it prints the sequence of approximations it generates, using the
@@ -13,13 +15,10 @@
 ; We will divert from the precise exercise requirements to allow automated tests.
 ; Instead of printing approximations, we return the number of steps required.
 
-(define (close-enough? v1 v2)
-  (< (abs (- v1 v2)) default-tolerance))
-
 (define (fixed-point f first-guess)
   (define (try guess steps)
     (let ((next (f guess)))
-      (if (close-enough? guess next)
+      (if (fuzzy-equals? guess next)
           (values next steps)
           (try next (+ steps 1)))))
   (try first-guess 0))

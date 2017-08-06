@@ -1,5 +1,7 @@
 #lang sicp
 
+(require support/fuzzy-checks)
+
 ; Exercise 1.35
 ;
 ; Show that the golden ratio phi (section 1.2.2) is a fixed point of the transformation x -> 1 + 1/x,
@@ -21,12 +23,9 @@
 ; Original definitions
 
 (define (fixed-point f first-guess)
-  (define (close-enough? v1 v2)
-    (< (abs (- v1 v2)) default-tolerance))
-
   (define (try guess)
     (let ((next (f guess)))
-      (if (close-enough? guess next)
+      (if (fuzzy-equals? guess next)
           next
           (try next))))
 

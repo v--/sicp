@@ -10,7 +10,7 @@ If you discover an error or simply have a suggestion, feel free to open an issue
 
 # Study group
 
-We formed a study group ([weekly meeting notes](https://github.com/dimitaruzunov/sicp/tree/master/notes), [Slack channel](https://sicp-sofia.slack.com/)) with the goal to discuss the theory, exercises, implementation details and personal impressions.
+We formed a study group ([weekly meeting notes](https://github.com/dimitaruzunov/sicp/tree/master/notes), [Slack channel](https://sicp-sofia.slack.com/)) with the goal to discuss the theory, the exercises, various implementation details and personal impressions.
 
 # Project structure
 

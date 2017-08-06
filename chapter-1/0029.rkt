@@ -54,7 +54,7 @@
 
   ; Verify that the simpson procedure is more accurate
   (define-simple-check (check-closer? a b target)
-    (< (abs (- a target)) (abs (- b target))))
+    (< (distance a target) (distance b target)))
 
   (check-closer? (simpson-integral cube 0 1 100)
                  (naive-integral cube 0 1 100)

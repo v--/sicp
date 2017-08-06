@@ -25,7 +25,10 @@
 (define (divides? a b)
   (= (remainder b a) 0))
 
-(define (average x y)
-  (/ (+ x y) 2))
+(define (average . args)
+  (/ (apply + args) (length args)))
+
+(define (distance x y)
+  (abs (- x y)))
 
 (provide (all-defined-out))

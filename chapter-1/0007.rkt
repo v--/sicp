@@ -30,7 +30,7 @@
   (average guess (/ x guess)))
 
 (define (good-enough? guess x)
-  (fuzzy-equals? (square guess) x))
+  (fuzzy-equal? (square guess) x))
 
 ; Alternative implementation
 

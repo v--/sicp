@@ -18,7 +18,7 @@
 (define (fixed-point f first-guess)
   (define (try guess steps)
     (let ((next (f guess)))
-      (if (fuzzy-equals? guess next)
+      (if (fuzzy-equal? guess next)
           (values next steps)
           (try next (+ steps 1)))))
   (try first-guess 0))

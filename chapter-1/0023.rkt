@@ -41,7 +41,7 @@
   (require support/fuzzy-checks)
 
   (define-simple-check (check-twice-faster? n)
-    (fuzzy-ratio-equals? (* (measure-procedure fast-smallest-divisor n) 2)
+    (fuzzy-ratio-equal? (* (measure-procedure fast-smallest-divisor n) 2)
                          (measure-procedure smallest-divisor n)
                          0.5))
 

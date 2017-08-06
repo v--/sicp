@@ -8,7 +8,7 @@ Each exercise is done using only the theory up to the corresponding point in the
 
 If you discover an error or simply have a suggestion, feel free to open an issue or pull request.
 
-# Used tools
+# Project structure
 
 All exercises are implemented using a custom language named `sicp`, defined in the [`sicp`](https://github.com/v--/sicp/blob/master/sicp) subfolder.
 
@@ -18,6 +18,8 @@ Some modules from Racket's standard library are occasionally imported in order p
 The [`support`](https://github.com/v--/sicp/blob/master/support) directory contains some more helpers, written Racket.
 
 `make test` runs all the tests, while `make test=$file` runs only the tests in `$file`.
+
+The "Original definitions" sections are definitions that are provided in the book and required by the corresponding exercise.
 
 # Travis? Really?
 

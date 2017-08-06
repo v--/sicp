@@ -17,11 +17,11 @@
 
 (define (cube-root-iter guess x)
   (define new-guess (improve guess x))
-  (if (good-enough? guess new-guess x)
+  (if (good-enough? guess new-guess)
       new-guess
       (cube-root-iter new-guess x)))
 
-(define (good-enough? guess new-guess x)
+(define (good-enough? guess new-guess)
   (< (abs (/ (- new-guess guess) guess)) default-tolerance))
 
 (define (improve guess x)

@@ -39,11 +39,11 @@
 
 (define (new-sqrt-iter guess x)
   (define new-guess (improve guess x))
-  (if (new-good-enough? guess new-guess x)
+  (if (new-good-enough? guess new-guess)
       new-guess
       (new-sqrt-iter new-guess x)))
 
-(define (new-good-enough? guess new-guess x)
+(define (new-good-enough? guess new-guess)
   (< (abs (/ (- new-guess guess) guess)) default-tolerance))
 
 (module* test #f

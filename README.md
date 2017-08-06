@@ -8,6 +8,10 @@ Each exercise is done using only the theory up to the corresponding point in the
 
 If you discover an error or simply have a suggestion, feel free to open an issue or pull request.
 
+# Study group
+
+We formed a study group ([weekly meeting notes](https://github.com/dimitaruzunov/sicp/tree/master/notes), [Slack channel](https://sicp-sofia.slack.com/)) with the goal to discuss the theory, exercises, implementation details and personal impressions.
+
 # Project structure
 
 All exercises are implemented using a custom language named `sicp`, defined in the [`sicp`](https://github.com/v--/sicp/blob/master/sicp) subfolder.

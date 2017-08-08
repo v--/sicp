@@ -1,6 +1,7 @@
 #lang sicp
 
 ; Exercise 1.10
+;
 ; The following procedure computes a mathematical function called Ackermann's function.
 
 (define (A x y)

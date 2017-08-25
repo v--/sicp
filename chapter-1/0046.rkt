@@ -42,7 +42,7 @@
 
   ((iterative-improve good-enough? improve) initial-guess))
 
-(module* test #f
+(module+ test
   (require rackunit)
 
   (check-= (sqrt 4)

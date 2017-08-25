@@ -8,7 +8,7 @@
 
 ; Solution
 
-(module* test #f
+(module+ test
   (require rackunit)
 
   (check-equal? 10

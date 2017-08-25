@@ -32,7 +32,7 @@
 
 ; Solution
 
-(module* test #f
+(module+ test
   (require rackunit)
 
   ; This exercise is more easily done backwards. First, we find closed-form expressions for `f`, `g` and `h`.

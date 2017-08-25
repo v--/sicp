@@ -32,7 +32,7 @@
 ; `new-if`, unlike `if`, evaluates both of it's operands, since it is a procedure.
 ; This can be seen as follows:
 
-(module* test #f
+(module+ test
   (require rackunit)
 
   (define x 1)

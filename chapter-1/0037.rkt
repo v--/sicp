@@ -62,7 +62,7 @@
 
 (provide (rename-out [cont-frac-iter cont-frac]))
 
-(module* test #f
+(module+ test
   (require rackunit)
 
   ; The minimal number of iterations is 10.

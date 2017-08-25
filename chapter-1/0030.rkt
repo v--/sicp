@@ -23,7 +23,7 @@
   (iter a 0))
 
 
-(module* test #f
+(module+ test
   (require rackunit)
 
   (define (identity x) x)

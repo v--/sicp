@@ -18,7 +18,7 @@
 
 (provide smallest-divisor)
 
-(module* test #f
+(module+ test
   (require rackunit)
 
   ; Verify that 199 and 1999 are prime, while 19999 is not.

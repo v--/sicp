@@ -27,7 +27,7 @@
 
 ; Verify that the lambda for D_i works
 
-(module* test #f
+(module+ test
   (require rackunit)
 
   (check-= (tan 0 100)

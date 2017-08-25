@@ -18,7 +18,7 @@
 (define (cdr z)
   (z (lambda (p q) q)))
 
-(module* test #f
+(module+ test
   (require rackunit)
 
   (define x 4)

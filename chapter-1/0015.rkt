@@ -25,7 +25,7 @@
 
 ; Solution
 
-(module* test #f
+(module+ test
   (require rackunit)
 
   ; In order to determine the number of applications of p, we use substitution

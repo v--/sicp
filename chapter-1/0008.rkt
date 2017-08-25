@@ -31,7 +31,7 @@
       (* 2 guess))
     3))
 
-(module* test #f
+(module+ test
   (require rackunit)
 
   (check-= (cube-root 8) 2 default-tolerance)

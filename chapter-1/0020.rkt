@@ -24,7 +24,7 @@
 ; how much times each one of the aliases is evaluated.
 
 
-(module* test #f
+(module+ test
   (require rackunit)
 
   (define-simple-check (check-two? x) (= x 2))

@@ -55,7 +55,7 @@
   (search-for-primes-iter (if (odd? n) n (+ n 1)) null))
 
 
-(module* test #f
+(module+ test
   (require rackunit)
   (require support/measure-procedure)
   (require support/fuzzy-checks)

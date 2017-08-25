@@ -13,7 +13,7 @@
 (define (frobnicate x y z)
   (sum-of-squares (max x y) (max (min x y) z)))
 
-(module* test #f
+(module+ test
   (require rackunit)
 
   (check-equal? (frobnicate 1 2 3) 13)

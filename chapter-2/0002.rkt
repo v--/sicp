@@ -48,7 +48,7 @@
 
 (provide make-point x-point y-point)
 
-(module* test #f
+(module+ test
   (require rackunit)
 
   (define s1 (make-segment (make-point 0 0)

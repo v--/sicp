@@ -26,7 +26,7 @@
           [else (f-impl (+ a (* 2 b) (* 3 c)) a b (- count 1))]))
   (f-impl 2 1 0 n))
 
-(module* test #f
+(module+ test
   (require rackunit)
 
   ; Verify that the iterative procedure yields correct values

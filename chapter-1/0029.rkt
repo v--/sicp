@@ -45,7 +45,7 @@
   (* (/ dx 3)
      (sum iter 0 inc n)))
 
-(module* test #f
+(module+ test
   (require rackunit)
 
   ; Verify that both implementations work

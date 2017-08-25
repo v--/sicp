@@ -42,7 +42,7 @@
 
   (product-iter term 1.0 inc n))
 
-(module* test #f
+(module+ test
   (require rackunit)
 
   ; First, verify that the procedures work equivalently.

@@ -15,7 +15,7 @@
 
 (provide compose)
 
-(module* test #f
+(module+ test
   (require rackunit)
 
   ; Verify that the procedure works as intended

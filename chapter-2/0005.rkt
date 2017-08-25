@@ -25,7 +25,7 @@
 (define (cdr z)
   (extract-power z 3))
 
-(module* test #f
+(module+ test
   (require rackunit)
 
   (define (verify-selectors pair)

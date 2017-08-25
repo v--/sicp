@@ -41,7 +41,7 @@
 
 ; Verify both procedures
 
-(module* test #f
+(module+ test
   (require rackunit)
 
   (check-equal? (product-of-coprimes 10) 189)

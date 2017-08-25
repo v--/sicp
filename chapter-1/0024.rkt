@@ -34,7 +34,7 @@
 ; primes that are larger than, respectively, 1000 and 1 000 000. A large tolerance is chosen
 ; because of both the non-determinism the algorithm and computer performance fluctuations.
 
-(module* test #f
+(module+ test
   (require rackunit)
   (require support/measure-procedure)
   (require support/fuzzy-checks)

@@ -36,7 +36,7 @@
              (* x
                 (+ a x)))))))
 
-(module* test #f
+(module+ test
   (require rackunit)
 
   (check-= (newtons-method (cubic 1 1 1) 1)

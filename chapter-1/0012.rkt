@@ -21,7 +21,7 @@
       1
       (+ (triangle-item (- row 1) col) (triangle-item row (- col 1)))))
 
-(module* test #f
+(module+ test
   (require rackunit)
 
   (check-equal? (triangle-item 0 0) 1)

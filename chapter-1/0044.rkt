@@ -20,7 +20,7 @@
 (define (smooth f)
   (lambda (x) (average (f (- x dx)) (f x) (f (+ x dx)))))
 
-(module* test #f
+(module+ test
   (require rackunit)
 
   (define (discontinuous x)

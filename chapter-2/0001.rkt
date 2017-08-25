@@ -16,7 +16,7 @@
     (cons (/ (* n (/ abs-d d)) g)
           (/ abs-d g))))
 
-(module* test #f
+(module+ test
   (require rackunit)
 
   (check-equal? (make-rat 10 2)

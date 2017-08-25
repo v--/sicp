@@ -55,7 +55,7 @@
 (define area-dimensions (area-factory rectangle-dimensions-width
                                       rectangle-dimensions-height))
 
-(module* test #f
+(module+ test
   (require rackunit)
 
   (define r1-diagonals (make-rectangle-diagonals (make-point 0 0)

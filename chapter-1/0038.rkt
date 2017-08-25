@@ -15,7 +15,7 @@
 ; Solution
 ; Verify that the lambda for D_i works
 
-(module* test #f
+(module+ test
   (require rackunit)
 
   (check-= (cont-frac (lambda (i) 1.0)

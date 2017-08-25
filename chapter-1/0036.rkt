@@ -33,7 +33,7 @@
         x)
      2))
 
-(module* test #f
+(module+ test
   (require rackunit)
 
   (let-values ([(x steps) (fixed-point transform 2)])

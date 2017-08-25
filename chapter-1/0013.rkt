@@ -101,7 +101,7 @@
 (define (fib-direct n)
   (/ (- (expt phi n) (expt psi n)) (sqrt 5)))
 
-(module* test #f
+(module+ test
   (require rackunit)
 
   (check-= (fib-rec 1) (fib-direct 1) default-tolerance)

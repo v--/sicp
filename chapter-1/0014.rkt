@@ -165,7 +165,7 @@
         (+ 1 (* 2 n))
         (+ 1 (sum (map reducer (integer-list 0 refined-limit)))))))
 
-(module* test #f
+(module+ test
   (require rackunit)
 
   (check-equal? (count-change 11) 4)

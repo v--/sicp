@@ -13,7 +13,7 @@
 (define (double proc)
   (lambda (x) (proc (proc x))))
 
-(module* test #f
+(module+ test
   (require rackunit)
 
   (check-equal? ((double inc) 1) 3)

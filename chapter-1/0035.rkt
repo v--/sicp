@@ -33,7 +33,7 @@
 
 (provide fixed-point)
 
-(module* test #f
+(module+ test
   (require rackunit)
 
   (check-= (fixed-point (lambda (x) (+ 1 (/ 1 x))) 1.0)

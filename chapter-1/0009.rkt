@@ -30,7 +30,7 @@
       b
       (plus-iter (dec a) (inc b))))
 
-(module* test #f
+(module+ test
   (require rackunit)
 
   ; Verify that each step of the expansion produces the same result

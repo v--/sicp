@@ -46,7 +46,7 @@
 (define (new-good-enough? guess new-guess)
   (< (abs (/ (- new-guess guess) guess)) default-tolerance))
 
-(module* test #f
+(module+ test
   (require rackunit)
 
   ; The `sqrt` procedure fails for sufficiently small numbers, simply because they are too small for the tolerance level.

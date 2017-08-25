@@ -24,7 +24,7 @@
 
 (provide repeated)
 
-(module* test #f
+(module+ test
   (require rackunit)
 
   ; Verify that the procedure works as described in the exercise

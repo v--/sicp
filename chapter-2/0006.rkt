@@ -21,7 +21,7 @@
 
 ; Solution
 
-(module* test #f
+(module+ test
   (require rackunit)
 
   ; Define a helper for converting Church numerals to integers

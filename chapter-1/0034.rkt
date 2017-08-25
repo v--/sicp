@@ -9,7 +9,7 @@
 
 ; Then we have
 
-(module* test #f
+(module+ test
   (require rackunit)
 
   (check-equal? (f square)

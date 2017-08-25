@@ -24,7 +24,7 @@
         [(even? b) (double (fast-* a (halve b)))]
         [else (+ a (fast-* a (- b 1)))]))
 
-(module* test #f
+(module+ test
   (require rackunit)
 
   (check-equal? (* 1 2) (fast-* 1 2))

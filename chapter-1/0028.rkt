@@ -51,7 +51,7 @@
 (define (congruent a b modulo)
   (= (remainder a modulo) (remainder b modulo)))
 
-(module* test #f
+(module+ test
   (require rackunit)
 
   (define-simple-check (check-prime? n)

@@ -49,7 +49,7 @@
   (accumulate-iter * 1 term a next b))
 
 
-(module* test #f
+(module+ test
   (require rackunit)
 
   ; Now, verify that the procedures work equivalently.

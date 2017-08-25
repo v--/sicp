@@ -19,7 +19,7 @@
 
   (fermat-test-iter 0))
 
-(module* test #f
+(module+ test
   (require rackunit)
 
   ; Verify that the procedure works

@@ -49,7 +49,7 @@
 
   (iter (lambda (y) (/ x (expt y (- n 1)))) 0))
 
-(module* test #f
+(module+ test
   (require rackunit)
 
   (let-values ([(root number-of-damps) (algebraic-root 2 4 1.0)])

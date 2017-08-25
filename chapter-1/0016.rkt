@@ -15,7 +15,7 @@
         [(even? n) (expt-iter (square b) (/ n 2) accum)]
         [else (expt-iter b (- n 1) (* accum b))]))
 
-(module* test #f
+(module+ test
   (require rackunit)
 
   (check-equal? (expt 2 0) 1)

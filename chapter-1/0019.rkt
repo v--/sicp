@@ -63,7 +63,7 @@
   (+ (* 2 p q)
      (square q)))
 
-(module* test #f
+(module+ test
   (require rackunit)
 
   (check-equal? (fib 0) 0)

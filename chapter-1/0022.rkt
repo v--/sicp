@@ -75,6 +75,6 @@
          [t3 (measure-procedure prime? 99991)]
          [t4 (measure-procedure prime? 999983)])
 
-    (check/= (* t1 (sqrt 10)) t2 0.3)
-    (check/= (* t2 (sqrt 10)) t3 0.3)
-    (check/= (* t3 (sqrt 10)) t4 0.3)))
+    (check/= (* t1 (sqrt 10)) t2 0.5)
+    (check/= (* t2 (sqrt 10)) t3 0.5)
+    (check/= (* t3 (sqrt 10)) t4 0.5)))

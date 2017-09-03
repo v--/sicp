@@ -43,11 +43,11 @@
 ;     This can be fixed with the following mul-interval implementation:
 
 (define (mul-interval x y)
-  (define (helper a)
-    (if (= a 0) 1 a))
+  (define (helper a b)
+    (if (= a b 0) 1 (* a b)))
 
-  (make-interval (helper (* (lower-bound x) (lower-bound y)))
-                 (helper (* (upper-bound x) (upper-bound y)))))
+  (make-interval (helper (lower-bound x) (lower-bound y))
+                 (helper (upper-bound x) (upper-bound y))))
 
 ;     The augmentation that is achieved using the helper makes sure that an interval that
 ;     contains one zero endpoint produces the identity when it is multiplied by it's inverse.

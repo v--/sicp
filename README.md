@@ -25,6 +25,8 @@ The [`support`](https://github.com/v--/sicp/blob/master/support) directory conta
 
 The "Original definitions" sections are definitions that are provided in the book and required by the corresponding exercise.
 
+If there are tests in the exercise description (before the solution), that means that the desired result was provided in the description and (maybe) modified into a proper test.
+
 # Travis? Really?
 
 Since most exercises are verified with unit tests, I set up a Travis CI project. Because I can.

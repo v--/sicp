@@ -27,9 +27,9 @@
 ; We define a procedure that yields both the n-th root (so that it can be verified) and the number
 ; of average damps it takes so that f(y) = x/y^(n-1) converges for the fixed value of x.
 ;
-; Floyd's Tortoise and Hare cycle detection algorithm is used to verify that the repeated application
-; of the k-fold average-damped function f does not have cycles (as long the successive values
-; are distant enough from each other).
+; A simplification of Floyd's Tortoise and Hare cycle detection algorithm is used to verify
+; that the repeated application of the k-fold average-damped function f does not have cycles
+; (as long the successive values are distant enough from each other).
 
 (define (algebraic-root n x initial)
   (define (no-cycles? f)

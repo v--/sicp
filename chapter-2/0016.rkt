@@ -9,6 +9,7 @@
 ; Can you devise an interval-arithmetic package that does not have this shortcoming,
 ; or is this task impossible?
 
+; Solution
 ; We cannot reasonably expect equivalence between algebraic expressions without knowing that the
 ; underlying algebraic operations behave in accordance with some conventional rules. Most of these
 ; rules are derived from real number arithmetic, which is generalized by field structures.

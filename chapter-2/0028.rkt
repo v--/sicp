@@ -26,3 +26,5 @@
                     (fringe item)
                     (list item))
                 (fringe remainder)))))
+
+(provide fringe)

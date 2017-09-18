@@ -165,6 +165,8 @@
         (+ 1 (* 2 n))
         (+ 1 (sum (map reducer (integer-list 0 refined-limit)))))))
 
+(provide sum)
+
 (module+ test
   (require rackunit)
 

@@ -57,7 +57,7 @@
 
 (module+ test
   (require rackunit)
-  (require support/measure-procedure)
+  (require support/benchmark-procedure)
   (require support/fuzzy-checks)
 
   (check-equal? (search-for-primes 1000) (list 1019 1013 1009))
@@ -70,10 +70,10 @@
   ; computing the largest prime number smaller than 1000, 10 000, 100 000 and 1 000 000 and compare them.
   ; The tests may fail because of fluctuations in computer performance.
 
-  (let* ([t1 (measure-procedure prime? 997)]
-         [t2 (measure-procedure prime? 9973)]
-         [t3 (measure-procedure prime? 99991)]
-         [t4 (measure-procedure prime? 999983)])
+  (let* ([t1 (benchmark-procedure prime? 997)]
+         [t2 (benchmark-procedure prime? 9973)]
+         [t3 (benchmark-procedure prime? 99991)]
+         [t4 (benchmark-procedure prime? 999983)])
 
     (check/= (* t1 (sqrt 10)) t2 0.5)
     (check/= (* t2 (sqrt 10)) t3 0.5)

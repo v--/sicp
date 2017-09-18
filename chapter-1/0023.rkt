@@ -37,12 +37,12 @@
 
 (module+ test
   (require rackunit)
-  (require support/measure-procedure)
+  (require support/benchmark-procedure)
   (require support/fuzzy-checks)
 
   (define-simple-check (check-twice-faster? n)
-    (fuzzy-ratio-equal? (* (measure-procedure fast-smallest-divisor n) 2)
-                         (measure-procedure smallest-divisor n)
+    (fuzzy-ratio-equal? (* (benchmark-procedure fast-smallest-divisor n) 2)
+                         (benchmark-procedure smallest-divisor n)
                          0.5))
 
   (check-twice-faster? 10007 0.6)

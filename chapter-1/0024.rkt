@@ -36,11 +36,11 @@
 
 (module+ test
   (require rackunit)
-  (require support/measure-procedure)
+  (require support/benchmark-procedure)
   (require support/fuzzy-checks)
 
-  (let ([t1 (measure-procedure fast-prime? 1009 20)]
-        [t2 (measure-procedure fast-prime? 1000003 20)]
+  (let ([t1 (benchmark-procedure fast-prime? 1009 20)]
+        [t2 (benchmark-procedure fast-prime? 1000003 20)]
         [complexity-ratio (/ (log 1e6) (log 1e3))])
 
     (check/= (* t1 complexity-ratio) t2 0.5)))

@@ -28,7 +28,4 @@
 (define (average . args)
   (/ (apply + args) (length args)))
 
-(define (distance x y)
-  (abs (- x y)))
-
 (provide (all-defined-out))

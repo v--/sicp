@@ -53,7 +53,7 @@
 
   ; The same is true for subtraction.
   (check-equal? (interval-width (sub-interval i1 i2))
-                (distance (interval-width i1) (interval-width i2)))
+                (abs (- (interval-width i1) (interval-width i2))))
 
   ; The width of multiplied intervals cannot be meaningfully expressed as a function of
   ; the individual interval widths. To show this, here is a simple example of how

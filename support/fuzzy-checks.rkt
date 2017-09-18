@@ -3,10 +3,10 @@
 (require (only-in rackunit define-simple-check))
 
 (define (fuzzy-equal? a b [tolerance default-tolerance])
-  (< (distance a b) tolerance))
+  (< (abs (- a b)) tolerance))
 
 (define (fuzzy-ratio-equal? a b [tolerance default-tolerance])
-  (< (distance (/ a b) 1)
+  (< (abs (- (/ a b) 1))
      tolerance))
 
 (define-simple-check (check/= a b tolerance)

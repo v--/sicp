@@ -26,12 +26,12 @@
   (cons d1 d2))
 
 (define (rectangle-diagonals-width rectangle)
-  (distance (x-point (car rectangle))
-            (x-point (cdr rectangle))))
+  (abs (- (x-point (car rectangle))
+          (x-point (cdr rectangle)))))
 
 (define (rectangle-diagonals-height rectangle)
-  (distance (y-point (car rectangle))
-            (y-point (cdr rectangle))))
+  (abs (- (y-point (car rectangle))
+          (y-point (cdr rectangle)))))
 
 (define perimeter-diagonals (perimeter-factory rectangle-diagonals-width
                                                rectangle-diagonals-height))

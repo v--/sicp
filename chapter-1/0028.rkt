@@ -48,9 +48,6 @@
          (remainder (* base (expmod base (- exp 1) m))
                     m)]))
 
-(define (congruent a b modulo)
-  (= (remainder a modulo) (remainder b modulo)))
-
 (module+ test
   (require rackunit)
 

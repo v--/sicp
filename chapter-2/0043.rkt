@@ -49,8 +49,8 @@
 
   ; This difference in speed comes from the fact that (queen-cols (- k 1)) is evaluated multiple
   ; times at each step in the queens-slow procedure. Applicative-order evaluation allows us to spare
-  ; all of these redundancy by placing the application of (queen-cols (- k 1)) outside of
-  ; the outer lambda, thus applying it only once at each step (as in the original queen procedure).
+  ; all of this redundancy by placing the application of (queen-cols (- k 1)) outside of
+  ; the outer lambda, thus applying it only once at each step (as in the original queens procedure).
   ;
   ; It is difficult to infer the time complexity for the queens and queens-slow procedures
   ; because of the filtration that happens at each step. We will ignore this filtration for now.

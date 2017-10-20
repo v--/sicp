@@ -30,7 +30,7 @@ If there are tests in the exercise description (before the solution), that means
 # Picture language
 
 Section 2.2.4 requires basic drawing operations. To keep things simple and testable, I have tweaked
-the given procedures to render to monochrome matrices. See [the basic painter implementation](https://github.com/v--/sicp/blob/master/sicp/picture-lang.rkt) for more information.
+the given procedures to render to monochrome matrices. See [the basic painter implementation](https://github.com/v--/sicp/blob/master/support/picture-lang.rkt) for more information.
 
 # Travis? Really?
 

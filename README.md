@@ -27,6 +27,11 @@ The "Original definitions" sections are definitions that are provided in the boo
 
 If there are tests in the exercise description (before the solution), that means that the desired result was provided in the description and (maybe) modified into a proper test.
 
+# Picture language
+
+Section 2.2.4 requires basic drawing operations. To keep things simple and testable, I have tweaked
+the given procedures to render to monochrome matrices. See [the basic painter implementation](https://github.com/v--/sicp/blob/master/sicp/picture-lang.rkt) for more information.
+
 # Travis? Really?
 
 Since most exercises are verified with unit tests, I set up a Travis CI project. Because I can.

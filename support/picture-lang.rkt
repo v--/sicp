@@ -1,7 +1,6 @@
-#lang sicp
+#lang racket
 
 (require math/matrix)
-(require rackunit)
 
 (require support/fuzzy-checks)
 (require (only-in chapter-2/0046 make-vect xcor-vect ycor-vect add-vect sub-vect scale-vect))
@@ -98,8 +97,8 @@
                            (fill? x y)))))))
 
 (define default-frame (make-frame (make-vect 0 0)
-                                  (make-vect 0 (dec canvas-size))
-                                  (make-vect (dec canvas-size) 0)))
+                                  (make-vect 0 (- canvas-size 1))
+                                  (make-vect (- canvas-size 1) 0)))
 
 (provide transform-painter segments->painter matrix-or matrix->string default-frame)
 (provide (all-from-out chapter-2/0046))

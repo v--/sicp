@@ -1,7 +1,7 @@
 #lang sicp
 
 (require (only-in chapter-2/0040 enumerate-interval flatmap))
-(require (only-in chapter-2/0042 queens adjoin-position empty-board safe?))
+(require (only-in chapter-2/0042 adjoin-position empty-board safe?))
 
 ; Exercise 2.43
 ;
@@ -37,15 +37,49 @@
             (enumerate-interval 1 board-size)))))
   (queen-cols board-size))
 
+; Now we define some iteration-counting procedures for both procedure variants
+(define (queens-iterations board-size)
+  (let ([iterations 0])
+    (define (queen-cols k)
+      (if (= k 0)
+          (list empty-board)
+          (filter
+            (lambda (positions) (safe? k positions))
+            (flatmap
+              (lambda (rest-of-queens)
+                (map (lambda (new-row)
+                       (set! iterations (+ iterations 1))
+                       (adjoin-position new-row k rest-of-queens))
+                     (enumerate-interval 1 board-size)))
+              (queen-cols (- k 1))))))
+    (queen-cols board-size)
+    iterations))
+
+(define (queens-slow-iterations board-size)
+  (let ([iterations 0])
+    (define (queen-cols k)
+      (if (= k 0)
+          (list empty-board)
+          (filter
+            (lambda (positions) (safe? k positions))
+            (flatmap
+              (lambda (new-row)
+                (map (lambda (rest-of-queens)
+                       (set! iterations (+ iterations 1))
+                       (adjoin-position new-row k rest-of-queens))
+                     (queen-cols (- k 1))))
+              (enumerate-interval 1 board-size)))))
+    (queen-cols board-size)
+    iterations))
+
 (module+ test
   (require rackunit)
-  (require support/benchmark-procedure)
 
-  ; We see that the queens procedure from exercise 2.42 is consistently faster than queens-slow,
+  ; We see that the queens procedure from exercise 2.42 is significantly faster than queens-slow,
   ; even for 3x3 boards.
   (check <
-         (benchmark-procedure queens 3)
-         (benchmark-procedure queens-slow 3))
+    (* 3 (queens-iterations 3))
+    (queens-slow-iterations 3))
 
   ; This difference in speed comes from the fact that (queen-cols (- k 1)) is evaluated multiple
   ; times at each step in the queens-slow procedure. Applicative-order evaluation allows us to spare
@@ -55,8 +89,9 @@
   ; It is difficult to infer the time complexity for the queens and queens-slow procedures
   ; because of the filtration that happens at each step. We will ignore this filtration for now.
   ;
-  ; Let k be the board size. We want to estimate the number applications of the inner lambda.
-  ; We will use T(k) for the time complexity of the queens procedure and S(k) for queens-slow.
+  ; Let k be the board size. We want to estimate the ceiling of the number applications
+  ; of the inner lambda. We will use T(k) for the time complexity of the queens procedure
+  ; and S(k) for queens-slow.
   ;
   ; T(k) can be easily estimated as the sum of the number of applications of the inner lambda at
   ; each step. This gives us

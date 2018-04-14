@@ -54,10 +54,20 @@
 
   (search-for-primes-iter (if (odd? n) n (+ n 1)) null))
 
+; This procedure counts the find-divisor iterations by outputting (D - 1) where D is the largest divisor that is tested.
+(define (smallest-divisor-iterations n)
+  (define (find-divisor-iterations n test-divisor)
+    (if (or (> (square test-divisor) n)
+            (divides? test-divisor n))
+        test-divisor
+        (find-divisor-iterations n (+ test-divisor 1))))
+
+    (- (find-divisor-iterations n 2) 1))
+
+(provide smallest-divisor-iterations)
 
 (module+ test
   (require rackunit)
-  (require support/benchmark-procedure)
   (require support/fuzzy-checks)
 
   (check-equal? (search-for-primes 1000) (list 1019 1013 1009))
@@ -65,16 +75,19 @@
   (check-equal? (search-for-primes 100000) (list 100043 100019 100003))
   (check-equal? (search-for-primes 1000000) (list 1000037 1000033 1000003))
 
-  ; Now, we empirically verify that the running time for the test is increased by roughly sqrt(10)
+  ; Now, we verify that the running time for the test is increased by roughly sqrt(10)
   ; when "jumping" from one order of magnitude to the next. For this, we measure the time for
-  ; computing the largest prime number smaller than 1000, 10 000, 100 000 and 1 000 000 and compare them.
-  ; The tests may fail because of fluctuations in computer performance.
+  ; computing the largest prime number smaller than 1e3, 1e4, 1e5 and 1e6 and compare them
+  ; by using a helper function to measure the iteration count of the find-divisor procedure.
 
-  (let* ([t1 (benchmark-procedure prime? 997)]
-         [t2 (benchmark-procedure prime? 9973)]
-         [t3 (benchmark-procedure prime? 99991)]
-         [t4 (benchmark-procedure prime? 999983)])
+  (define (prime?-iterations n)
+    (smallest-divisor-iterations n))
 
-    (check/= (* t1 (sqrt 10)) t2 0.5)
-    (check/= (* t2 (sqrt 10)) t3 0.5)
-    (check/= (* t3 (sqrt 10)) t4 0.5)))
+  (let* ([t1 (prime?-iterations 997)]
+         [t2 (prime?-iterations 9973)]
+         [t3 (prime?-iterations 99991)]
+         [t4 (prime?-iterations 999983)])
+
+    (check/= (* t1 (sqrt 10)) t2 1e-2)
+    (check/= (* t2 (sqrt 10)) t3 1e-2)
+    (check/= (* t3 (sqrt 10)) t4 1e-3)))

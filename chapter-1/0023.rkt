@@ -1,6 +1,6 @@
 #lang sicp
 
-(require (only-in chapter-1/0021 smallest-divisor))
+(require (only-in chapter-1/0022 smallest-divisor-iterations))
 
 ; Exercise 1.23
 ;
@@ -18,39 +18,53 @@
 
 ; Solution
 ; Now we implement the optimized procedure mentioned in the exercise description and show
-; that it's generally twice faster than the naive implementation. A large tolerance is chosen
-; because of computer performance fluctuations (smaller numbers have even been skipped).
+; that it's generally twice faster than the naive implementation. For the benchmarks we use
+; a specialized procedure that outputs the iteration count rather than the actual divisor.
 
 (define (fast-smallest-divisor n)
   (fast-find-divisor n 2))
 
 (define (fast-find-divisor n test-divisor)
-  (cond ((> (square test-divisor) n) n)
-        ((divides? test-divisor n) test-divisor)
-        (else (fast-find-divisor n (next test-divisor)))))
+  (cond [(> (square test-divisor) n) n]
+        [(divides? test-divisor n) test-divisor]
+        [else (fast-find-divisor n (next test-divisor))]))
+
+; The specialized iteration counters
+(define (fast-smallest-divisor-iterations n)
+  (define (fast-find-divisor-iterations n test-divisor iterations)
+    (if (or (> (square test-divisor) n)
+            (divides? test-divisor n))
+        iterations
+        (fast-find-divisor-iterations n (next test-divisor) (+ iterations 1))))
+
+  (fast-find-divisor-iterations n 2 1))
 
 (define (next n)
   (if (= n 2)
       3
       (+ n 2)))
 
-
 (module+ test
   (require rackunit)
-  (require support/benchmark-procedure)
   (require support/fuzzy-checks)
 
-  (define-simple-check (check-twice-faster? n)
-    (fuzzy-ratio-equal? (* (benchmark-procedure fast-smallest-divisor n) 2)
-                         (benchmark-procedure smallest-divisor n)
-                         0.5))
+  (define-simple-check (check-twice-faster? n tolerance)
+    (fuzzy-ratio-equal? (* (fast-smallest-divisor-iterations n) 2)
+                        (smallest-divisor-iterations n)
+                        tolerance))
 
-  (check-twice-faster? 10007 0.6)
-  (check-twice-faster? 10009 0.6)
-  (check-twice-faster? 10037 0.6)
-  (check-twice-faster? 100003 0.3)
-  (check-twice-faster? 100019 0.3)
-  (check-twice-faster? 100043 0.3)
-  (check-twice-faster? 1000003 0.2)
-  (check-twice-faster? 1000033 0.2)
-  (check-twice-faster? 1000037 0.2))
+  (check-twice-faster? 1009 1e-1)
+  (check-twice-faster? 1013 1e-1)
+  (check-twice-faster? 1019 1e-1)
+
+  (check-twice-faster? 10007 1e-1)
+  (check-twice-faster? 10009 1e-1)
+  (check-twice-faster? 10037 1e-1)
+
+  (check-twice-faster? 100003 1e-2)
+  (check-twice-faster? 100019 1e-2)
+  (check-twice-faster? 100043 1e-2)
+
+  (check-twice-faster? 1000003 1e-2)
+  (check-twice-faster? 1000033 1e-2)
+  (check-twice-faster? 1000037 1e-2))

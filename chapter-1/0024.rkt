@@ -30,17 +30,36 @@
         [(fermat-test n) (fast-prime? n (- times 1))]
         [else false]))
 
-; We verify that the fast-prime algorithm's running time grows ~2 times when testing the smallest
-; primes that are larger than, respectively, 1000 and 1 000 000. A large tolerance is chosen
-; because of both the non-determinism the algorithm and computer performance fluctuations.
-
 (module+ test
   (require rackunit)
-  (require support/benchmark-procedure)
   (require support/fuzzy-checks)
 
-  (let ([t1 (benchmark-procedure fast-prime? 1009 20)]
-        [t2 (benchmark-procedure fast-prime? 1000003 20)]
-        [complexity-ratio (/ (log 1e6) (log 1e3))])
+  ; We verify that the fast-prime algorithm's iterations grow ~2 times when testing the smallest
+  ; primes that are larger than, respectively, 1e4 and 1e8. Again, we use a specialized procedure
+  ; to count the iterations of the expmod procedure, which happens to be the procedure that actually
+  ; affects performance.
 
-    (check/= (* t1 complexity-ratio) t2 0.5)))
+  (define (fast-prime?-iterations n times [iterations 0])
+    (define (expmod-iterations base exp m)
+      (set! iterations (+ iterations 1))
+      (cond [(= exp 0) 1]
+            [(even? exp)
+             (remainder (square (expmod-iterations base (/ exp 2) m))
+                        m)]
+            [else
+             (remainder (* base (expmod-iterations base (- exp 1) m))
+                        m)]))
+
+    (define (fermat-test-iterations n)
+      (define (try-it a)
+        (= (expmod-iterations a n n) a))
+      (try-it (+ 1 (random (- n 1)))))
+
+    (cond [(= times 0) iterations]
+          [(fermat-test-iterations n) (fast-prime?-iterations n (- times 1) iterations)]
+          [else iterations]))
+
+  (let ([t1 (fast-prime?-iterations 10037 10)]
+        [t2 (fast-prime?-iterations 100000039 10)])
+
+    (check/= (* t1 2) t2 0.03)))

@@ -52,9 +52,9 @@
   (car coin-values))
 
 ; The cc procedure does not depend on the order of the coin values.
-; This can be seen in a simple call tree expansion with two non-coprime coin types.
+; This can be seen in a simple evaluation tree expansion with two non-coprime coin types.
 ;
-; The full call tree for (cc 8 list(4 2)) is
+; The full evaluation tree for (cc 8 list(4 2)) is
 ;
 ; cc(8, [4 2]) = 3
 ; ├──cc(8, [2]) = 1
@@ -76,7 +76,7 @@
 ;    │
 ;    └──cc(0, [4 2]) = 1
 ;
-; The full call tree for (cc 8 list(2 4)) is
+; The full evaluation tree for (cc 8 list(2 4)) is
 ;
 ; cc(8, [2 4]) = 3
 ; ├──cc(8, [4]) = 1

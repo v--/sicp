@@ -28,7 +28,7 @@
 ; When written in the above way, expmod applies itself twice if the exponent is even,
 ; which makes the optimization pointless.
 ;
-; In other words, the call tree for expmod is just as deep as the one for fast-expmod,
+; In other words, the evaluation tree for expmod is just as deep as the one for fast-expmod,
 ; but it is much wider:
 ;
 ; Naive implementation - Theta(n):

@@ -28,7 +28,7 @@
         [(= kinds-of-coins 4) 25]
         [(= kinds-of-coins 5) 50]))
 
-; The full call tree is
+; The full evaluation tree is
 ;
 ; cc(11, 5) = 4
 ; ├──cc(11, 4) = 4
@@ -96,7 +96,7 @@
 ;
 ; Which yields 4 possible coin combinations.
 
-; T(n, k) is the time complexity for count-change for coin kinds k that was inferred from the call tree.
+; T(n, k) is the time complexity for count-change for coin kinds k that was inferred from the evaluation tree.
 ;
 ;   T(n, k) = {
 ;     2 * n + 1,                                             if k == 1
@@ -149,7 +149,7 @@
 (define (divides x y)
   (= 0 (remainder x y)))
 
-(define (calculate-call-count n k)
+(define (calculate-iterations n k)
   (let* ([denomination (first-denomination k)]
          [limit (floor (/ n denomination))]
          [refined-limit (cond [(= n 0) 0]
@@ -157,7 +157,7 @@
                               [else limit])]
 
          [reducer (lambda (i)
-                    (+ (calculate-call-count (- n (* i denomination))
+                    (+ (calculate-iterations (- n (* i denomination))
                                              (- k 1))
                        1))])
 
@@ -172,13 +172,13 @@
 
   (check-equal? (count-change 11) 4)
 
-  (check-equal? (count-change-calls 6 1) (calculate-call-count 6 1))
-  (check-equal? (count-change-calls 6 2) (calculate-call-count 6 2))
-  (check-equal? (count-change-calls 6 3) (calculate-call-count 6 3))
-  (check-equal? (count-change-calls 10 3) (calculate-call-count 10 3))
-  (check-equal? (count-change-calls 10 4) (calculate-call-count 10 4))
-  (check-equal? (count-change-calls 15 4) (calculate-call-count 15 4))
-  (check-equal? (count-change-calls 15 5) (calculate-call-count 15 5)))
+  (check-equal? (count-change-calls 6 1) (calculate-iterations 6 1))
+  (check-equal? (count-change-calls 6 2) (calculate-iterations 6 2))
+  (check-equal? (count-change-calls 6 3) (calculate-iterations 6 3))
+  (check-equal? (count-change-calls 10 3) (calculate-iterations 10 3))
+  (check-equal? (count-change-calls 10 4) (calculate-iterations 10 4))
+  (check-equal? (count-change-calls 15 4) (calculate-iterations 15 4))
+  (check-equal? (count-change-calls 15 5) (calculate-iterations 15 5)))
 
-; The space complexity is linear (again, inferred from the call tree):
+; The space complexity is linear (again, inferred from the evaluation tree):
 ;   S(n, k) = 2 * n + k ~ Theta(n + k).

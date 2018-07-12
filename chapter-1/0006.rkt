@@ -7,8 +7,8 @@
 ; Alyssa's friend Eva Lu Ator claims this can indeed be done, and she defines a new version of if:
 
 (define (new-if predicate then-clause else-clause)
-  (cond (predicate then-clause)
-        (else else-clause)))
+  (cond [predicate then-clause]
+        [else else-clause]))
 
 ; Eva demonstrates the program for Alyssa:
 ;

@@ -40,16 +40,16 @@
                     a)
                 4)
 
-  (check-equal? (cond ((= a 4) 6)
-                      ((= b 4) (+ 6 7 a))
-                      (else 25))
+  (check-equal? (cond [(= a 4) 6]
+                      [(= b 4) (+ 6 7 a)]
+                      [else 25])
                 16)
 
   (check-equal? (+ 2 (if (> b a) b a))
                 6)
 
-  (check-equal? (* (cond ((> a b) a)
-                         ((< a b) b)
-                         (else -1))
+  (check-equal? (* (cond [(> a b) a]
+                         [(< a b) b]
+                         [else -1])
                    (+ a 1))
                 16))

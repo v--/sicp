@@ -100,6 +100,8 @@
 ; "linearized" evaluation tree. Both apply themselves O(n) times. Also, tree->list-1 requires about
 ; twice as much auxilary storage.
 
+(provide entry left-branch right-branch make-tree)
+
 (module+ test
   (require rackunit)
 

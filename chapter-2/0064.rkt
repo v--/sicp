@@ -59,6 +59,8 @@
 ;
 ; b. The order of growth in the number of steps is linear.
 
+(provide list->tree)
+
 (module+ test
   (require rackunit)
 

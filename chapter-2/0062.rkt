@@ -16,6 +16,8 @@
                     (union-set (cdr set1) set2))]
         ))
 
+(provide (rename-out [union-set union-set-ordered]))
+
 (module+ test
   (require rackunit)
 

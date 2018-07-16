@@ -10,12 +10,7 @@
 ; in preference to the non-duplicate one?
 
 ; Solution
-; The space requirements in such an implementation would obviously rise, as will the time complexity
-; of element-of-set? and intersection-set (whose implementation would remain the same), but the time
-; complexity of adjoin-set will become constant and the time complexity of union-set will become
-; linear.
-
-; Slow procedures
+; Original definitions
 (define (element-of-set? x set)
   (cond [(null? set) false]
         [(equal? x (car set)) true]
@@ -28,7 +23,11 @@
                (intersection-set (cdr set1) set2))]
         [else (intersection-set (cdr set1) set2)]))
 
-; Fast procedures
+; The space requirements in such an implementation would obviously rise, as will the time complexity
+; of element-of-set? and intersection-set (whose implementation would remain the same), but the time
+; complexity of adjoin-set will become constant and the time complexity of union-set will become
+; linear.
+
 (define (adjoin-set x set)
   (cons x set))
 

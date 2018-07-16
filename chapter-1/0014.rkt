@@ -123,19 +123,6 @@
 ; An empirical proof that T(n, k) is indeed the time complexity function for the count-change procedure
 ; is given below (with unit tests).
 
-(define (count-change-calls amount kinds-of-coins)
-  (+ 1 (cc-count-calls amount kinds-of-coins)))
-
-(define (cc-count-calls amount kinds-of-coins)
-  (if (or (<= amount 0) (= kinds-of-coins 0))
-      0
-      (+ 2
-         (cc-count-calls amount
-                         (- kinds-of-coins 1))
-         (cc-count-calls (- amount
-                            (first-denomination kinds-of-coins))
-                         kinds-of-coins))))
-
 (define (sum list)
   (if (null? list)
       0
@@ -149,26 +136,39 @@
 (define (divides x y)
   (= 0 (remainder x y)))
 
-(define (calculate-iterations n k)
-  (let* ([denomination (first-denomination k)]
-         [limit (floor (/ n denomination))]
-         [refined-limit (cond [(= n 0) 0]
-                              [(divides n denomination) (- limit 1)]
-                              [else limit])]
-
-         [reducer (lambda (i)
-                    (+ (calculate-iterations (- n (* i denomination))
-                                             (- k 1))
-                       1))])
-
-    (if (= k 1)
-        (+ 1 (* 2 n))
-        (+ 1 (sum (map reducer (integer-list 0 refined-limit)))))))
-
 (provide sum)
 
 (module+ test
   (require rackunit)
+
+  (define (count-change-calls amount kinds-of-coins)
+    (+ 1 (cc-count-calls amount kinds-of-coins)))
+
+  (define (cc-count-calls amount kinds-of-coins)
+    (if (or (<= amount 0) (= kinds-of-coins 0))
+        0
+        (+ 2
+           (cc-count-calls amount
+                           (- kinds-of-coins 1))
+           (cc-count-calls (- amount
+                              (first-denomination kinds-of-coins))
+                           kinds-of-coins))))
+
+  (define (calculate-iterations n k)
+    (let* ([denomination (first-denomination k)]
+           [limit (floor (/ n denomination))]
+           [refined-limit (cond [(= n 0) 0]
+                                [(divides n denomination) (- limit 1)]
+                                [else limit])]
+
+           [reducer (lambda (i)
+                      (+ (calculate-iterations (- n (* i denomination))
+                                               (- k 1))
+                         1))])
+
+      (if (= k 1)
+          (+ 1 (* 2 n))
+          (+ 1 (sum (map reducer (integer-list 0 refined-limit)))))))
 
   (check-equal? (count-change 11) 4)
 

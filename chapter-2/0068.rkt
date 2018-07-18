@@ -40,6 +40,8 @@
         (error "bad symbol" symbol)
         (reverse reverse-encoded))))
 
+(provide encode)
+
 (module+ test
   (require rackunit)
 

@@ -1,6 +1,6 @@
 #lang sicp
 
-(require (only-in chapter-2/0067 make-leaf make-leaf-set make-code-tree))
+(require (only-in chapter-2/0067 make-leaf make-leaf-set make-code-tree weight))
 
 ; Exercise 2.69
 ;
@@ -20,15 +20,20 @@
 
 ; Solution
 
-(define (successive-merge leaf-set)
-  (define (successive-merge-iter leaf-set result)
-    (cond [(null? leaf-set) result]
-          [(null? result) (successive-merge-iter (rest leaf-set) (car leaf-set))]
-          [else (successive-merge-iter (rest leaf-set)
-                                       (make-code-tree (car leaf-set)
-                                                       result))]))
+; This procedure is just a little modification of the one in 2.61
+(define (adjoin-leaf-set x set)
+  (if (null? set)
+      (list x)
+      (let ([smallest (car set)])
+        (if (<= (weight x) (weight smallest))
+            (cons x set)
+            (cons smallest (adjoin-leaf-set x (cdr set)))))))
 
-  (successive-merge-iter leaf-set null))
+(define (successive-merge leaf-set)
+  (cond [(null? leaf-set) null]
+        [(null? (cdr leaf-set)) (car leaf-set)]
+        [else (successive-merge (adjoin-leaf-set (make-code-tree (cadr leaf-set) (car leaf-set))
+                                                 (cddr leaf-set)))]))
 
 (provide generate-huffman-tree)
 
@@ -47,11 +52,12 @@
                              '(D 1)))
 
   (define sample-tree
-    (make-code-tree (make-leaf 'A 4)
-                    (make-code-tree
-                      (make-leaf 'B 2)
-                      (make-code-tree (make-leaf 'C 1)
-                                      (make-leaf 'D 1)))))
+    (make-code-tree
+      (make-leaf 'A 4)
+      (make-code-tree
+        (make-leaf 'B 2)
+        (make-code-tree (make-leaf 'C 1)
+                        (make-leaf 'D 1)))))
 
   (check-equal? (generate-huffman-tree sample-pairs)
                 sample-tree))

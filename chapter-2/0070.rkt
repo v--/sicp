@@ -27,7 +27,7 @@
 ; needed to encode this song if we used a fixed-length code for the eight-symbol alphabet?
 
 ; Solution
-; The variable-length encoding bit length of the song is 87, while the fixed-length encoding bit
+; The variable-length encoding bit length of the song is 84, while the fixed-length encoding bit
 ; length is 3 * 36 = 108.
 
 (module+ test
@@ -52,4 +52,4 @@
   (define tree (generate-huffman-tree alphabet-pairs))
 
   (check-equal? (length (encode song tree))
-                87))
+                84))

@@ -22,23 +22,23 @@
 ; Solution
 
 (define (encode-symbol symbol tree)
-  (define (reverse-encode-symbol-iter subtree path)
+  (define (encode-symbol-iter subtree path)
     (if (leaf? subtree)
         (if (eq? symbol (symbol-leaf subtree))
             path
             null)
 
-        (let ([maybe-symbol (reverse-encode-symbol-iter (left-branch subtree)
-                                                        (cons 0 path))])
-          (if (null? maybe-symbol)
-              (reverse-encode-symbol-iter (right-branch subtree)
-                                          (cons 1 path))
-              maybe-symbol))))
+        (let ([left-path (encode-symbol-iter (left-branch subtree)
+                                             (append path '(0)))])
+          (if (null? left-path)
+              (encode-symbol-iter (right-branch subtree)
+                                  (append path '(1)))
+              left-path))))
 
-  (let ([reverse-encoded (reverse-encode-symbol-iter tree null)])
-    (if (null? reverse-encoded)
+  (let ([encoded (encode-symbol-iter tree null)])
+    (if (null? encoded)
         (error "bad symbol" symbol)
-        (reverse reverse-encoded))))
+        encoded)))
 
 (provide encode)
 

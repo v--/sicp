@@ -9,13 +9,20 @@
 ; Solution
 
 (define (adjoin-set x set)
-  (let ([smallest (car set)])
-    (cond [(< x smallest) (cons x set)]
-          [(= x smallest) set]
-          [else (cons smallest (adjoin-set x (cdr set)))])))
+  (if (null? set)
+      (list x)
+      (let ([smallest (car set)])
+        (cond [(< x smallest) (cons x set)]
+              [(= x smallest) set]
+              [else (cons smallest (adjoin-set x (cdr set)))]))))
+
+(provide adjoin-set)
 
 (module+ test
   (require rackunit)
+
+  (check-equal? (adjoin-set 1 null)
+                '(1))
 
   (check-equal? (adjoin-set 1 '(1 2 3))
                 '(1 2 3))

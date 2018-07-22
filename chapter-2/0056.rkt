@@ -51,6 +51,7 @@
   (and (number? exp) (= exp num)))
 
 ; Required constructor and selectors
+; Note: only the case where the exponent is a number is handled
 (define (make-exponentiation base exponent)
   (cond [(variable? exponent) (error "Variable exponents are not supported")]
         [(and (=number? base 0) (=number? exponent 0)) (error "0 ** 0 is undefined")]

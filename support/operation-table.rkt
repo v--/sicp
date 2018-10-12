@@ -33,4 +33,4 @@
             "No method for these types -- APPLY-GENERIC"
             (list op type-tags))))))
 
-(provide put get attach-tag type-tag apply-generic)
+(provide put get attach-tag type-tag contents apply-generic)

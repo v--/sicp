@@ -1,6 +1,6 @@
 #lang racket
 
-; See section 2.4
+; See section 2.4 and 2.5
 
 (define table (make-hash))
 
@@ -8,7 +8,7 @@
   (hash-set! table (list op type) proc))
 
 (define (get op type)
-  (hash-ref table (list op type) null))
+  (hash-ref table (list op type) #f))
 
 ; Definitions from the book
 (define (attach-tag type-tag contents)

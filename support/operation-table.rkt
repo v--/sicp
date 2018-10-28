@@ -3,12 +3,19 @@
 ; See section 2.4 and 2.5
 
 (define table (make-hash))
+(define coercion-table (make-hash))
 
 (define (put op type proc)
   (hash-set! table (list op type) proc))
 
+(define (put-coercion src dest proc)
+  (hash-set! coercion-table (list src dest) proc))
+
 (define (get op type)
   (hash-ref table (list op type) #f))
+
+(define (get-coercion src dest)
+  (hash-ref coercion-table (list src dest) #f))
 
 ; Definitions from the book
 (define (attach-tag type-tag contents)
@@ -29,8 +36,21 @@
     (let ([proc (get op type-tags)])
       (if proc
           (apply proc (map contents args))
-          (error
-            "No method for these types -- APPLY-GENERIC"
-            (list op type-tags))))))
+          (if (= (length args) 2)
+              (let ([type1 (car type-tags)]
+                    [type2 (cadr type-tags)]
+                    [a1 (car args)]
+                    [a2 (cadr args)])
+                (let ([t1->t2 (get-coercion type1 type2)]
+                      [t2->t1 (get-coercion type2 type1)])
+                  (cond [t1->t2
+                         (apply-generic op (t1->t2 a1) a2)]
+                        [t2->t1
+                         (apply-generic op a1 (t2->t1 a2))]
+                        [else
+                         (error "No method for these types"
+                                (list op type-tags))])))
+              (error "No method for these types"
+                     (list op type-tags)))))))
 
-(provide put get attach-tag type-tag contents apply-generic)
+(provide put get put-coercion get-coercion attach-tag type-tag contents apply-generic)

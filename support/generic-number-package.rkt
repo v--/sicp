@@ -153,6 +153,13 @@
        (lambda (x y) (tag (make-from-real-imag x y))))
   (put 'make-from-mag-ang 'complex
        (lambda (r a) (tag (make-from-mag-ang r a))))
+
+  ; From section 2.5.2
+  (define (scheme-number->complex n)
+    (make-complex-from-real-imag (contents n) 0))
+
+  (put-coercion 'scheme-number 'complex scheme-number->complex)
+
   'done)
 
 (define (make-complex-from-real-imag x y)

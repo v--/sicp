@@ -31,6 +31,8 @@
       set1
       (union-set (adjoin-set (car set2) set1) (cdr set2))))
 
+(provide element-of-set?)
+
 (module+ test
   (require rackunit)
 

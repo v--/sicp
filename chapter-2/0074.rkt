@@ -52,7 +52,7 @@
       (error "No such employee")
       (let ([record (get-record name (car division-files))])
         (if (null? record)
-            (get-employee-record name (rest division-files))
+            (get-employee-record name (cdr division-files))
             record))))
 
 ; d. We must install procedures for get-record and get-salary the new division

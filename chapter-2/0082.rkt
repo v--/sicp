@@ -6,7 +6,7 @@
 (require (only-in chapter-2/0040 flatmap))
 (require (only-in chapter-2/0059 element-of-set?))
 
-; Exercise 2.82.
+; Exercise 2.82
 ;
 ; Show how to generalize apply-generic to handle coercion in the general case of multiple arguments.
 ; One strategy is to attempt to coerce all the arguments to the type of the first argument, then to

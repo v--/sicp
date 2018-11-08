@@ -3,7 +3,7 @@
 (require support/operation-table)
 (require support/generic-number-package)
 
-; Exercise 2.83.
+; Exercise 2.83
 ;
 ; Suppose you are designing a generic arithmetic system for dealing with the tower of types shown in
 ; figure 2.25: integer, rational, real, complex. For each type (except complex), design a procedure
@@ -11,9 +11,9 @@
 ; operation that will work for each type (except complex).
 
 ; Solution
-; We will use the existing types [scheme-number, rational, complex] rather than
-; [interger, rational, real, compex] in order to be able to actually write and test the code without
-; being overwhelmed by the implementation.
+; We will use the types [scheme-number, rational, complex] that already have implementations rather
+; than [interger, rational, real, compex] in order to be able to actually write and test the code
+; without being overwhelmed by the implementation.
 
 (define (install-raise-procedures)
   (put 'raise '(scheme-number)
@@ -30,6 +30,8 @@
 
 (define (raise number)
   (apply-generic 'raise number))
+
+(provide install-raise-procedures raise)
 
 (module+ test
   (require rackunit)

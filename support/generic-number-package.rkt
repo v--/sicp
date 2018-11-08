@@ -62,6 +62,9 @@
 
   (put 'make 'rational
        (lambda (n d) (tag (make-rat n d))))
+
+  (put 'numer '(rational) numer)
+  (put 'denom '(rational) denom)
   'done)
 
 (define (make-rational n d)

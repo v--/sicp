@@ -29,10 +29,10 @@
 
 ; Use the obvious conversion from built-in numbers to rational numbers
 (put 'equ? '(scheme-number rational)
-     (lambda (a b) (equ? (make-rational a 1) (attach-tag 'rational b))))
+     (lambda (a b) ((get 'equ? '(rational rational)) (contents (make-rational a 1)) b)))
 
 (put 'equ? '(rational scheme-number)
-     (lambda (a b) (equ? (attach-tag 'scheme-number b) (attach-tag 'rational a))))
+     (lambda (a b) ((get 'equ? '(scheme-number rational)) b a)))
 
 (define (equ? a b)
   (apply-generic 'equ? a b))

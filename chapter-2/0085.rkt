@@ -34,7 +34,9 @@
        (lambda (complex) (make-rational (real-part complex) 1)))
 
   (put 'project '(rational)
-       (lambda (rational) (make-scheme-number ((get 'numer '(rational)) rational))))
+       (lambda (rational) (make-scheme-number (/
+                                                (numer rational)
+                                                (denom rational)))))
 
   'done)
 
@@ -64,11 +66,11 @@
                 (make-rational 1 1))
 
   (check-equal? (project (make-rational 1 2))
-                (make-scheme-number 1))
+                (make-scheme-number 1/2))
 
   ; Test drop
-  (check-equal? (drop (make-rational 1 2))
-                (make-rational 1 2))
+  (check-equal? (drop (make-complex-from-real-imag 1 1))
+                (make-complex-from-real-imag 1 1))
 
   (check-equal? (drop (make-rational 2 1))
                 (make-scheme-number 2))

@@ -30,8 +30,6 @@
 
 (define (install-rational-package)
   ;; internal procedures
-  (define (numer x) (car x))
-  (define (denom x) (cdr x))
   (define (make-rat n d)
     (let ((g (gcd n d)))
       (cons (/ n g) (/ d g))))
@@ -62,10 +60,10 @@
 
   (put 'make 'rational
        (lambda (n d) (tag (make-rat n d))))
-
-  (put 'numer '(rational) numer)
-  (put 'denom '(rational) denom)
   'done)
+
+(define (numer x) (car x))
+(define (denom x) (cdr x))
 
 (define (make-rational n d)
   ((get 'make 'rational) n d))

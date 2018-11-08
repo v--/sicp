@@ -24,6 +24,8 @@
     (proc (car items))
     (for-each proc (cdr items))))
 
+(provide for-each)
+
 (module+ test
   (require rackunit)
   (require compatibility/mlist)

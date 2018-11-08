@@ -15,8 +15,6 @@
 
 (put 'equ? '(rational rational)
      (lambda (a b)
-       (define (numer x) (car x))
-       (define (denom x) (cdr x))
        (and (= (numer a) (numer b))
             (= (denom a) (denom b)))))
 

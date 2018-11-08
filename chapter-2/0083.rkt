@@ -22,8 +22,8 @@
   (put 'raise '(rational)
        (lambda (rational)
          (make-complex-from-real-imag
-           (/ ((get 'numer '(rational)) rational)
-              ((get 'denom '(rational)) rational))
+           (/ (numer rational)
+              (denom rational))
            0)))
 
   'done)

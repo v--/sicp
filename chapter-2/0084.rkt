@@ -39,7 +39,7 @@
           [(is-type-higher? type value-type) (raise-to-type type (raise value))]
           [else (error "Cannot raise type" value-type "into a lower type" type)])))
 
-(define (modified-apply-generic op . args)
+(define (apply-generic-upcast op . args)
   (let ([type-tags (map type-tag args)])
     (let ([proc (get op type-tags)])
       (if proc
@@ -54,18 +54,20 @@
                         "No method for these types -- APPLY-GENERIC"
                         (list op type-tags)))))))))
 
+(provide apply-generic-upcast)
+
 (module+ test
   (require rackunit rackunit/text-ui)
 
   (void (install-generic-numbers-package))
   (void (install-raise-procedures))
 
-  (check-equal? (modified-apply-generic 'add
+  (check-equal? (apply-generic-upcast 'add
                                         (make-scheme-number 1)
                                         (make-scheme-number 2))
                 (make-scheme-number 3))
 
-  (check-equal? (modified-apply-generic 'add
+  (check-equal? (apply-generic-upcast 'add
                                         (make-scheme-number 1)
                                         (make-rational 1 2))
                 (make-rational 3 2))

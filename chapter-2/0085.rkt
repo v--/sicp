@@ -3,7 +3,7 @@
 (require support/operation-table)
 (require support/generic-number-package)
 
-(require (only-in chapter-2/0079 equ?))
+(require (only-in chapter-2/0079 install-equ? equ?))
 (require (only-in chapter-2/0083 install-raise-procedures raise))
 (require (only-in chapter-2/0084 apply-generic-upcast))
 
@@ -55,9 +55,10 @@
   (drop (apply apply-generic-upcast (cons op args))))
 
 (module+ test
-  (require rackunit rackunit/text-ui)
+  (require rackunit)
 
   (void (install-generic-numbers-package))
+  (void (install-equ?))
   (void (install-raise-procedures))
   (void (install-project-procedures))
 

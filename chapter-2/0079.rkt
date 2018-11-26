@@ -10,37 +10,39 @@
 ; and complex numbers.
 
 ; Solution
-(put 'equ? '(scheme-number scheme-number)
-     (lambda (a b) (= a b)))
+(define (install-equ?)
+  (put 'equ? '(scheme-number scheme-number)
+       (lambda (a b) (= a b)))
 
-(put 'equ? '(rational rational)
-     (lambda (a b)
-       (and (= (numer a) (numer b))
-            (= (denom a) (denom b)))))
+  (put 'equ? '(rational rational)
+       (lambda (a b)
+         (and (= (numer a) (numer b))
+              (= (denom a) (denom b)))))
 
-; This procedure can of course be implemented separately for the different representations, but the
-; gain from this is neglectable.
-(put 'equ? '(complex complex)
-     (lambda (a b)
-       (and (= (real-part a) (real-part b))
-            (= (imag-part a) (imag-part b)))))
+  ; This procedure can of course be implemented separately for the different representations, but the
+  ; gain from this is neglectable.
+  (put 'equ? '(complex complex)
+       (lambda (a b)
+         (and (= (real-part a) (real-part b))
+              (= (imag-part a) (imag-part b)))))
 
-; Use the obvious conversion from built-in numbers to rational numbers
-(put 'equ? '(scheme-number rational)
-     (lambda (a b) ((get 'equ? '(rational rational)) (contents (make-rational a 1)) b)))
+  ; Use the obvious conversion from built-in numbers to rational numbers
+  (put 'equ? '(scheme-number rational)
+       (lambda (a b) ((get 'equ? '(rational rational)) (contents (make-rational a 1)) b)))
 
-(put 'equ? '(rational scheme-number)
-     (lambda (a b) ((get 'equ? '(scheme-number rational)) b a)))
+  (put 'equ? '(rational scheme-number)
+       (lambda (a b) ((get 'equ? '(scheme-number rational)) b a))))
 
 (define (equ? a b)
   (apply-generic 'equ? a b))
 
-(provide equ?)
+(provide install-equ? equ?)
 
 (module+ test
   (require rackunit)
 
   (void (install-generic-numbers-package))
+  (void (install-equ?))
 
   ; Built-in numbers
   (check-true (equ? (make-scheme-number 1)

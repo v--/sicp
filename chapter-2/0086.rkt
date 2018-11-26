@@ -3,7 +3,7 @@
 (require support/operation-table)
 (require support/generic-number-package)
 
-(require (only-in chapter-2/0079 equ?))
+(require (only-in chapter-2/0079 install-equ? equ?))
 
 ; Exercise 2.86
 ;
@@ -125,6 +125,7 @@
   (require rackunit)
 
   (void (install-generic-numbers-package))
+  (void (install-equ?))
   (void (install-new-scheme-number-procedures))
   (void (install-new-rational-procedures))
   (void (install-modified-rectangular-procedures))

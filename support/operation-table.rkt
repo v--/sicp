@@ -18,18 +18,34 @@
   (hash-ref coercion-table (list src dest) #f))
 
 ; Definitions from the book
-(define (attach-tag type-tag contents)
+(define (attach-tag-original type-tag contents)
   (cons type-tag contents))
 
-(define (type-tag datum)
+(define (type-tag-original datum)
   (if (pair? datum)
       (car datum)
       (error "Bad tagged datum -- TYPE-TAG" datum)))
 
-(define (contents datum)
+(define (contents-original datum)
   (if (pair? datum)
       (cdr datum)
       (error "Bad tagged datum -- CONTENTS" datum)))
+
+; Definitions that are compatible with exercise 2.78 and section 2.5.3
+(define (type-tag datum)
+  (if (number? datum)
+      'scheme-number
+      (type-tag-original datum)))
+
+(define (attach-tag type-tag contents)
+  (if (number? contents)
+      contents
+      (attach-tag-original type-tag contents)))
+
+(define (contents datum)
+  (if (number? datum)
+      datum
+      (contents-original datum)))
 
 (define (apply-generic op . args)
   (let ([type-tags (map type-tag args)])

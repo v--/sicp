@@ -31,6 +31,8 @@
 (define (=zero? number)
   (equ? (get 'zero (type-tag number)) number))
 
+(provide =zero? install-zeros)
+
 (module+ test
   (require rackunit)
 

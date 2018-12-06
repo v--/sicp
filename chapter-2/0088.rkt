@@ -23,10 +23,10 @@
     (additive-inverse (coeff term))))
 
 (define (term-list-additive-inverse lst)
-  (if (null? lst)
+  (if (empty-termlist? lst)
       lst
-      (cons (term-additive-inverse (first-term lst))
-            (term-list-additive-inverse (rest-terms lst)))))
+      (adjoin-term (term-additive-inverse (first-term lst))
+                   (term-list-additive-inverse (rest-terms lst)))))
 
 (put 'additive-inverse 'polynomial
      (lambda (p)
@@ -46,9 +46,11 @@
   (void (install-polynomial-equ?))
 
   (check equ?
-         (additive-inverse (make-polynomial 'x the-empty-termlist))
-         (make-polynomial 'x the-empty-termlist))
+         (additive-inverse (make-polynomial 'x (make-term-list-sparse)))
+         (make-polynomial 'x (make-term-list-sparse)))
 
   (check equ?
-         (additive-inverse (make-polynomial 'x (list (make-term 3 2))))
-         (make-polynomial 'x (list (make-term 3 -2)))))
+         (additive-inverse (make-polynomial 'x (make-term-list-sparse (make-term 3 2))))
+         (make-polynomial 'x (make-term-list-sparse (make-term 3 -2))))
+
+  )

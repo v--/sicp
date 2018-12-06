@@ -43,7 +43,7 @@
 
 (define (install-polynomial-zero)
   (put 'zero 'polynomial
-       (make-polynomial 'x the-empty-termlist))
+       (make-polynomial 'x (make-term-list-sparse)))
 
   'done)
 
@@ -59,24 +59,24 @@
   (void (install-polynomial-zero))
 
   ; Check equ?
-  (check-true (equ? (make-polynomial 'x the-empty-termlist)
-                    (make-polynomial 'x the-empty-termlist)))
+  (check-true (equ? (make-polynomial 'x (make-term-list-sparse))
+                    (make-polynomial 'x (make-term-list-sparse))))
 
-  (check-true (equ? (make-polynomial 'x the-empty-termlist)
-                    (make-polynomial 'y the-empty-termlist)))
+  (check-true (equ? (make-polynomial 'x (make-term-list-sparse))
+                    (make-polynomial 'y (make-term-list-sparse))))
 
-  (check-true (equ? (make-polynomial 'x (list (make-term 3 3)))
-                    (make-polynomial 'x (list (make-term 3 3)))))
+  (check-true (equ? (make-polynomial 'x (make-term-list-sparse (make-term 3 3)))
+                    (make-polynomial 'x (make-term-list-sparse (make-term 3 3)))))
 
-  (check-false (equ? (make-polynomial 'x (list (make-term 3 2)))
-                     (make-polynomial 'x (list (make-term 3 3)))))
+  (check-false (equ? (make-polynomial 'x (make-term-list-sparse (make-term 3 2)))
+                     (make-polynomial 'x (make-term-list-sparse (make-term 3 3)))))
 
-  (check-false (equ? (make-polynomial 'x (list (make-term 2 3)))
-                     (make-polynomial 'x (list (make-term 3 3)))))
+  (check-false (equ? (make-polynomial 'x (make-term-list-sparse (make-term 2 3)))
+                     (make-polynomial 'x (make-term-list-sparse (make-term 3 3)))))
 
-  (check-false (equ? (make-polynomial 'x (list (make-term 3 3)))
-                     (make-polynomial 'y (list (make-term 3 3)))))
+  (check-false (equ? (make-polynomial 'x (make-term-list-sparse (make-term 3 3)))
+                     (make-polynomial 'y (make-term-list-sparse (make-term 3 3)))))
 
   ; Check =zero?
-  (check-true (=zero? (make-polynomial 'x the-empty-termlist)))
-  (check-false (=zero? (make-polynomial 'x (list (make-term 3 3))))))
+  (check-true (=zero? (make-polynomial 'x (make-term-list-sparse))))
+  (check-false (=zero? (make-polynomial 'x (make-term-list-sparse (make-term 3 3))))))

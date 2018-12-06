@@ -1,8 +1,12 @@
 [![Build Status](https://travis-ci.org/v--/sicp.svg?branch=master)](https://travis-ci.org/v--/sicp)
 
+# This repository is dead
+
+As painful as it is for me to abandon something that I put so much effort into, the SICP exercises were simply sucking too much of my time without providing much benefit. I started doing the exercises as part of a study group of a few mildly experienced fellow developers, but it didn't take much time for the people to start realizing that parts of the book, especially the exercises, were often too verbose for somebody that was not completely novice to programming.
+
 # SICP exercises
 
-This is my attempt at doing all exercises from the book [Structure and Interpretation of Computer Programs](https://mitpress.mit.edu/sicp/) ([PDF version](https://github.com/sarabander/sicp-pdf)).
+This is my attempt at comprehensively doing all exercises from the book [Structure and Interpretation of Computer Programs](https://mitpress.mit.edu/sicp/) ([PDF version](https://github.com/sarabander/sicp-pdf)). It took me a lot of time to reach the end of chapter two before abandoning the all-exercises train.
 
 Each exercise is done using only the theory up to the corresponding point in the book. Exceptions for this rule are allowed for the verification of the solutions, but not for the solutions themselves. That being said, any incompatibilities between Scheme and Racket are resolved in favor of Racket.
 
